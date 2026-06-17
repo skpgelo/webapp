@@ -1,0 +1,39 @@
+/* Customisasi Google Org Chart & Stisla Integration */
+#chart_div {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+}
+.custom-node {
+    border: 2px solid #6777ef !important;
+    background-color: #fff !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 170px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+}
+.node-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #6777ef;
+}
+.node-name {
+    font-weight: 700;
+    color: #191d21;
+    font-size: 13px;
+    text-align: left;
+}
+.node-title {
+    font-size: 11px;
+    color: #fc544b;
+    font-style: italic;
+    text-align: left;
+}
