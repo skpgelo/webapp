@@ -1,0 +1,25 @@
+- Welcome
+    - [Overview](/en/2.3/overview)
+    - [License](/en/2.3/license)
+    - [Upgrade Guides](/en/2.3/upgrade-guides)
+- Starter
+    - [Third-party Libraries](/en/2.3/starter/third-party-libraries)
+    - [Folder Structure](/en/2.3/starter/folder-structure)
+    - [Technology](/en/2.3/starter/technology)
+- Development
+    - [Introduction](/en/2.3/development/introduction)
+    - [Layout](/en/2.3/development/layout)
+    - [Sidebar](/en/2.3/development/sidebar)
+    - [Navbar](/en/2.3/development/navbar)
+    - [Content](/en/2.3/development/content)
+    - [Card](/en/2.3/development/card)
+- JavaScript
+    - [Introduction](/en/2.3/javascript/introduction)
+    - [Modal](/en/2.3/javascript/modal)
+    - [Chat](/en/2.3/javascript/chat)
+    - [Gallery](/en/2.3/javascript/gallery)
+    - [Follow Button](/en/2.3/javascript/follow-button)
+    - [Custom Tab](/en/2.3/javascript/custom-tab)
+    - [Utilities](/en/2.3/javascript/utilities)
+- Other
+    - [Support](/en/2.3/utilities/support)

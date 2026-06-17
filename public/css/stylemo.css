@@ -1,0 +1,47 @@
+
+        /* Mengunci posisi relatif pada setiap kolom pembungkus */
+        .js-hover-col {
+            position: relative;
+        }
+
+        /* Tombol utama dibuat memenuhi lebar kolom (w-100) agar sejajar sempurna */
+        .main-btn {
+            width: 100%;
+            padding: 12px;
+            font-weight: 600;
+        }
+
+        /* Form login disembunyikan total di awal */
+        .login-form-container {
+            display: none; 
+            position: center;
+            top: 105%; /* Tepat di bawah tombol */
+            left: 0;
+            width: 150%; /* Lebar form sejajar sempurna dengan lebar tombol/kolom */
+            height: auto;
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 0 0 8px 8px; /* Sudut melengkung di bawah */
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+
+        .login-form-container-ki {
+            display: none; 
+            position: center;
+            top: 105%; /* Tepat di bawah tombol */
+            left: 0;
+            width: 150%; /* Lebar form sejajar sempurna dengan lebar tombol/kolom */
+            height: 10em;
+            background-color: #ffffff;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 0 0 8px 8px; /* Sudut melengkung di bawah */
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            z-index: 999;
+        }
+        /* Hilangkan margin default row Bootstrap agar jarak antar kolom rapi */
+        .custom-row {
+            --bs-gutter-y: 1.5rem;
+        }
