@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-10">
-                <a class="navbar-brand" style="font-size:medium;" href="#page-top">
+<nav class="navbar navbar-expand-sm navbar-light fixed-top" id="mainNav">
+            <div class="container px-4 px-lg-12">
+                <!-- <a class="navbar-brand" style="font-size:medium;" href="#page-top"> -->
                 <!-- <span style="color:red;"><i>ppid</span>bbppks bandung</i> -->
-                </a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- </a> -->
+                <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
-                </button>
+                </button> -->
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto" style="font-size:0.9rem ">
                         <!-- <li class="nav-item"><a class="nav-link" href="#about">Kami</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="#profile"><span style="color:primary;">Tentang</span> Kami</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#profile"><span  style="color:primary;">Tentang</span> Kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="#berkala"><span style="color:primary;">Informasi </span>Berkala</a></li>
                         <li class="nav-item"><a class="nav-link" href="#sertamerta"><span style="color:primary;">Informasi </span>Serta Merta</a></li>
                         <li class="nav-item"><a class="nav-link" href="#setiapsaat"><span style="color:primary;">Informasi </span>Setiap Saat</a></li>
@@ -25,10 +25,10 @@
                             <?php if (session()->get('logged_in') ) : ?>
                         <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>logout">Logout</a></li>
                         <li><a>I'm <?= session()->get('name'); ?></a></li>
-                        <li><a><img class="img-profile rounded-circle" src="<= base_url(); ?>/img/<= user()->users_image ?>" sizes="32x32"></a>
+                        <!-- <li><a><img class="img-profile rounded-circle" src="<= base_url(); ?>/img/<= user()->users_image ?>" sizes="32x32"></a> -->
                         </li>
                             <?php else : ?>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>v_login">Log<span style="color:blue;">in</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>v_login">Log<span style="color:blue;"> in</span></a></li>
                             <?php endif; ?>
                         </ul>
                         <!-- <ul class="topnav">

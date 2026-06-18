@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title><?= $title ?> || PPID BBPPKS Bandung</title>
+        <title><?= $title ?> || BBPPKS Bandung</title>
         <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>/img/Kemensos.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
-        <?=$this->include('home/navigasi')?>
+        <?=$this->include('layout_lp/_navigasi')?>
 
         <!-- Masthead-->
         <section class="signup-section bg-light" style="height: 100vh; " id="login">
@@ -28,7 +28,7 @@
                     <!-- <i class="fa fa-circle-info fa-4x mb-2 text-white " aria-hidden="true"></i> -->
                     <i class="far fa-paper-plane fa-2x mb-2 text-white"></i> 
                     <!-- <i class="fa-regular fa-paper-plane"></i> -->
-                        <h2 class=" my-220 text-uppercase mt-200 text-white mb-3" ><?= $title ?></h2>
+                        <h2 class=" my-220 text-uppercase mt-200 text-white mb-2" ><?= $title ?></h2>
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
                             <!-- * * * * * * * * * * * * * * *-->
@@ -98,10 +98,10 @@
                         </div>
                     </div>
                 </div>
-            <footer class="footer text-center text-white-50">
+            <!-- <footer class="footer text-center text-white-50">
                 <div><i>copyright &copy; <span style="color:red">ppid</span>bbppks bandung <?= date('Y'); ?></i>
                 </div>
-            </footer>
+            </footer> -->
         </section>
         <!-- About-->
         <!-- Bootstrap core JS-->
