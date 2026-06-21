@@ -15,7 +15,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="https://cloudflare.com"> <!-- Ganti/gunakan file lokal stisla.css jika ada -->
     <link rel="stylesheet" href="https://jsdelivr.net">
-    <link rel="stylesheet" href="https://jsdelivr.net">
 </head>
 
 <body>
@@ -47,17 +46,11 @@
     </div>
 
     <!-- General JS Scripts -->
-    <script src="https://jsdelivr.net"></script>
-    <script src="https://jsdelivr.net"></script>
-    <script src="https://jsdelivr.net"></script>
     <script src="https://cloudflare.com"></script>
     <script src="https://jsdelivr.net"></script>
 
     <!-- JS Libraies -->
     <?= $this->renderSection('scripts') ?>
 
-    <!-- Template JS File -->
-    <script src="https://jsdelivr.net"></script>
-    <script src="https://jsdelivr.net"></script>
 </body>
 </html>

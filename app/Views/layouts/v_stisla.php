@@ -22,10 +22,12 @@
     <div class="main-wrapper main-wrapper-1">
       
       <!-- Include Navbar Atas -->
-      <?= $this->include('layouts/parts/v_navbar') ?>
+      <!-- <= $this->include('layouts/parts/v_navbar') ?> -->
+      <?= $this->include('layouts/v_navbar') ?>
 
       <!-- Include Sidebar Kiri -->
-      <?= $this->include('layouts/parts/v_sidebar') ?>
+      <!-- <= $this->include('layouts/parts/v_sidebar') ?> -->
+      <?= $this->include('layouts/v_sidebar') ?>
 
       <!-- Main Content Container -->
       <div class="main-content">
