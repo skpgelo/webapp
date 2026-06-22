@@ -18,6 +18,18 @@ class Kepeg extends BaseController
         return view('kepeg/index');
     }
 
+    public function org()
+    // if(!$this->validate([]))
+    {
+        $data['title'] = '';
+        $data['db'] = 'Organisasi';
+        $data['juduldb'] = 'Organisasi';
+        // $data['oc'] = $this->kepegModel->viewOwl();
+        // $data['berita'] = $this->beritaModel->viewBerita();
+        return view('kepeg/org',$data);
+    }
+
+
     public function organ()
     // if(!$this->validate([]))
     {

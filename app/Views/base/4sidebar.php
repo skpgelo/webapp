@@ -11,6 +11,7 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li><a class="nav-link" href="<?= base_url() ?>/"><i class="far fa-circle"></i> <span>Utama</span></a></li>
+            <li><a class="nav-link" href="<?= base_url() ?>/lp"><i class="far fa-circle"></i> <span>Utama2</span></a></li>
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
             <!-- <li class="dropdown">
               <a href="<?= base_url() ?>/" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Utama</span></a>

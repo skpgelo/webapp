@@ -157,20 +157,20 @@
                     </div>
                 </div> -->
         <!-- <section class="projects-section bg-light"  id="owlsimple">        
-        <div class="col-lg-12"> -->
+        <div class="col-lg-12">
         
-<!-- <div id="carousel">
+<div id="carousel">
  <ul>
 <li><img alt="" src="http://favbulous.com/demo/skin-a-carousel/images/image1.jpg" /><a href="#">Image1</a></li>
 <li><img alt="" src="http://favbulous.com/demo/skin-a-carousel/images/image2.jpg" /><a href="#">Image2</a></li>
 <li><img alt="" src="http://favbulous.com/demo/skin-a-carousel/images/image3.jpg" /><a href="#">Image3</a></li>
  </ul>
- <div class="clearfix"></div> -->
- <!-- prev and next button -->
- <!-- <a id="prev" class="prev" href="#"><</a>
- <a id="next" class="next" href="#">></a> -->
- <!-- pagination -->
- <!-- <div id="pager" class="pager"></div>
+ <div class="clearfix"></div> 
+ prev and next button
+ <a id="prev" class="prev" href="#"><</a>
+ <a id="next" class="next" href="#">></a>
+ pagination
+ <div id="pager" class="pager"></div>
 </div>
 <script type="text/javascript">
   $(function() {
@@ -187,13 +187,13 @@
   });
   </script> -->
 
-                <!-- <div class="gallery"> -->
+        <div class="gallery">
             <!-- =============== SWIPER GALLERY CARDS =============== -->
             <!-- <div class="swiper gallery-cards">
-                <div class="swiper-wrapper"> -->
-                    <!-- <div class="swiper-slide">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
                         <article class="gallery__card">
-                            <img src="<= base_url(); ?>chick_carousel/assets/img/img1.png" alt="image gallery" class="gallery__img">
+                            <img src="<?= base_url(); ?>chick_carousel/assets/img/img1.png" alt="image gallery" class="gallery__img">
                             <div class="gallery__data">
                                 <h3 class="gallery__title">Ornament Vase</h3>
                                 <span class="gallery__subtitle">Modern</span>
@@ -203,7 +203,7 @@
 
                     <div class="swiper-slide">
                         <article class="gallery__card">
-                            <img src="<= base_url(); ?>chick_carousel/assets/img/img2.png" alt="image gallery" class="gallery__img">
+                            <img src="<?= base_url(); ?>chick_carousel/assets/img/img2.png" alt="image gallery" class="gallery__img">
                             <div class="gallery__data">
                                 <h3 class="gallery__title">Ornament Vase</h3>
                                 <span class="gallery__subtitle">Modern</span>
@@ -213,7 +213,7 @@
 
                     <div class="swiper-slide">
                         <article class="gallery__card">
-                            <img src="<= base_url(); ?>chick_carousel/assets/img/img3.png" alt="image gallery" class="gallery__img">
+                            <img src="<?= base_url(); ?>chick_carousel/assets/img/img3.png" alt="image gallery" class="gallery__img">
                             <div class="gallery__data">
                                 <h3 class="gallery__title">Ornament Vase</h3>
                                 <span class="gallery__subtitle">Modern</span>
@@ -223,7 +223,7 @@
 
                     <div class="swiper-slide">
                         <article class="gallery__card">
-                            <img src="<= base_url(); ?>chick_carousel/assets/img/img4.png" alt="image gallery" class="gallery__img">
+                            <img src="<?= base_url(); ?>chick_carousel/assets/img/img4.png" alt="image gallery" class="gallery__img">
                             <div class="gallery__data">
                                 <h3 class="gallery__title">Ornament Vase</h3>
                                 <span class="gallery__subtitle">Modern</span>
@@ -233,14 +233,14 @@
 
                     <div class="swiper-slide">
                         <article class="gallery__card">
-                            <img src="<= base_url(); ?>chick_carousel/assets/img/img5.png" alt="image gallery" class="gallery__img">
+                            <img src="<?= base_url(); ?>chick_carousel/assets/img/img5.png" alt="image gallery" class="gallery__img">
                             <div class="gallery__data">
                                 <h3 class="gallery__title">Ornament Vase</h3>
                                 <span class="gallery__subtitle">Modern</span>
                             </div>
                         </article>
-                    </div> -->
-                <!-- </div>
+                    </div>
+                </div>
             </div> -->
 
             <!-- =============== SWIPER GALLERY THUMBNAIL =============== -->
@@ -249,31 +249,31 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="gallery__thumbnail">
-                                <img src="<= base_url(); ?>chick_carousel/assets/img/img1.png" alt="image thumbnail" class="gallery__thumbnail-img">
+                                <img src="<?= base_url(); ?>chick_carousel/assets/img/img1.png" alt="image thumbnail" class="gallery__thumbnail-img">
                             </div>
                         </div>
     
                         <div class="swiper-slide">
                             <div class="gallery__thumbnail">
-                                <img src="<= base_url(); ?>chick_carousel/assets/img/img2.png" alt="image thumbnail" class="gallery__thumbnail-img">
+                                <img src="<?= base_url(); ?>chick_carousel/assets/img/img2.png" alt="image thumbnail" class="gallery__thumbnail-img">
                             </div>
                         </div>
     
                         <div class="swiper-slide">
                             <div class="gallery__thumbnail">
-                                <img src="<= base_url(); ?>chick_carousel/assets/img/img3.png" alt="image thumbnail" class="gallery__thumbnail-img">
+                                <img src="<?= base_url(); ?>chick_carousel/assets/img/img3.png" alt="image thumbnail" class="gallery__thumbnail-img">
                             </div>
                         </div>
     
                         <div class="swiper-slide">
                             <div class="gallery__thumbnail">
-                                <img src="<= base_url(); ?>chick_carousel/assets/img/img4.png" alt="image thumbnail" class="gallery__thumbnail-img">
+                                <img src="<?= base_url(); ?>chick_carousel/assets/img/img4.png" alt="image thumbnail" class="gallery__thumbnail-img">
                             </div>
                         </div>
                         
                         <div class="swiper-slide">
                             <div class="gallery__thumbnail">
-                                <img src="<= base_url(); ?>chick_carousel/assets/img/img5.png" alt="image thumbnail" class="gallery__thumbnail-img">
+                                <img src="<?= base_url(); ?>chick_carousel/assets/img/img5.png" alt="image thumbnail" class="gallery__thumbnail-img">
                             </div>
                         </div>
                     </div> -->
@@ -289,10 +289,10 @@
                 <div class="swiper-button-prev">
                     <i class="ri-arrow-left-line"></i>
                 </div>
-                            </div> -->
-                        <!-- </div>
-                    </div>
-        </section> -->
+                            </div>
+                        </div>
+                    </div> -->
+        </section>
         
         <!--ska-->
         <?=$this->include('layout_lp/_ska')?>

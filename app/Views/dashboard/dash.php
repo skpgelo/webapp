@@ -8,11 +8,11 @@
     <div class="main-content">
       <section class="section">
           <div class="section-header">
-          <h1><= $section_header;?></h1>
+          <h1><?= $section_header;?></h1>
           </div>
           
-          <?=$this->include('base/row')?>
-          <?=$this->include('base/sub_section_header')?>
+          <?=$this->include('base/4row')?>
+          <?=$this->include('base/4sub_section_header')?>
 
           <div class="row">
             <div class="col-lg-8 col-md-12 col-12 col-sm-12">

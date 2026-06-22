@@ -96,7 +96,7 @@ $(function() {
             center: true,
             loop: true,
             autoplay: true,
-            dots: true,
+            dots: false,
             navText: ['<span class="ti-arrow-left"></span>', '<span class="ti-arrow-right"></span>'],
             responsive: {
                 0: {
