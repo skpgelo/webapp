@@ -35,9 +35,10 @@ $routes->get('reg/download/(:num)', 'RegulasiControllers::download/$1');
 // $routes->match(['get', 'post'], 'store', 'Signup::store');
 
 // Rute Modul Statistik Baru
-$routes->get('googleOrgChart', 'StatistikControllers::googleOrgChart');
-$routes->get('balkanOrgChart', 'StatistikControllers::balkanOrgChart');
+$routes->get('googleOrgChart', 'OrganisasiControllers::googleOrgChart');
+$routes->get('balkanOrgChart', 'OrganisasiControllers::balkanOrgChart');
 
+<<<<<<< HEAD
 
 $routes->get('/', 'Home::index');
 $routes->get('/profile_pejabat', 'Home::profile_pejabat');
@@ -135,3 +136,11 @@ $routes->get('admin/berita/delete/$1', 'SdmController::delete/$1');
 
 $routes->get('auth_login', 'DistControllers::auth_login');
 $routes->get('auth_forgot_password', 'DistControllers::auth_forgot_password');
+=======
+$routes->get('peserta', 'PesertaControllers::index');
+$routes->get('peserta/create', 'PesertaControllers::create');
+$routes->post('peserta/store', 'PesertaControllers::store');
+$routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
+$routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
+$routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
+>>>>>>> a28ddf5db5e2e95c20a01b28acfd7cf554f14670
