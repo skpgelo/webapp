@@ -4,7 +4,7 @@ use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
-$routes->get('/db', 'Home::indexx');
+$routes->get('/lp', 'Home::indexx');
 $routes->get('/dash', 'Dashboard::dash');
 $routes->get('/dash1', 'Dashboard::dash1');
 
