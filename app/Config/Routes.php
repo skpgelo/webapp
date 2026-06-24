@@ -153,3 +153,11 @@ $routes->get('auth_login', 'DistControllers::auth_login');
 $routes->get('auth_forgot_password', 'DistControllers::auth_forgot_password');
 
 $routes->get('pegawai', 'Karyawan::index');
+
+$routes->get('peserta', 'PesertaControllers::index'); //bisa dipakai
+$routes->get('peserta/create', 'PesertaControllers::create');
+$routes->post('peserta/store', 'PesertaControllers::store');
+$routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
+$routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
+$routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
+$routes->get('peserta/statistik_peserta', 'PesertaControllers::statistik_peserta');
