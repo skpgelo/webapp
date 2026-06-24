@@ -4,78 +4,63 @@
     <title>Google Charts Org Chart</title>
     <!-- Load Google Charts API -->
     <script type="text/javascript" src="https://gstatic.com"></script>
-    <style>
-        /* Mengatur kustomisasi gaya kotak/node */
-        .custom-node {
-            border: 2px solid #2980b9 !important;
-            background-color: #ecf0f1 !important;
+   <style>
+        /* Sifat dasar kontainer bagan */
+        #chart_div {
+            width: 100%;
+            margin-top: 20px;
+        }
+        /* Kustomisasi warna kotak Google OrgChart via CSS */
+        .google-visualization-orgchart-node {
+            border: 2px solid #1a73e8 !important;
+            background-color: #f8f9fa !important;
             border-radius: 8px !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 10px !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .node-name {
-            font-weight: bold;
-            color: #2c3e50;
-            font-size: 14px;
-        }
-        .node-title {
-            font-style: italic;
-            color: #7f8c8d;
-            font-size: 12px;
-            margin-top: 5px;
+            font-family: 'Roboto', Arial, sans-serif;
         }
     </style>
-</head>
+    </head>
 <body>
 
     <!-- Wadah untuk memunculkan Org Chart -->
-    <div id="chart_div" style="width: 100%; overflow-x: auto; padding: 20px;"></div>
+   <div id="chart_div"></div>
 
     <script type="text/javascript">
-        // 1. Inisialisasi Google Charts
+        // Muat paket visualization dan orgchart dari Google
         google.charts.load('current', {packages:["orgchart"]});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Entity'); // ID Unik Node
-            data.addColumn('string', 'Parent'); // ID Unik Atasan
-            data.addColumn('string', 'ToolTip'); // Tooltip saat hover
+            data.addColumn('string', 'Entity');
+            data.addColumn('string', 'Parent');
+            data.addColumn('string', 'ToolTip');
 
-            // 2. Data mentah dari CodeIgniter 4
-            const rawData = <?= json_encode($sdm); ?>;
+            // 3. Memasukkan data database CI4 ke dalam baris Google Chart
+            data.addRows([
+                <?php foreach ($pegawai as $p) : ?>
+                    [
+                        {
+                            // 'v' adalah ID unik (wajib string), 'f' adalah format tampilan HTML di dalam kotak
+                            v: '<?= $p['id']; ?>', 
+                            f: '<div style="font-weight:bold; color:#1a73e8;"><?= esc($p['nama']); ?></div><div style="font-size:11px; color:#5f6368;"><?= esc($p['jabatan']); ?></div>'
+                        },
+                        // Menentukan atasan. Jika atasan_id kosong atau 0, diisi string kosong '' (artinya dia pucuk pimpinan)
+                        '<?= ($p['parent_id'] == 0 || empty($p['parent_id'])) ? '' : $p['parent_id']; ?>',
+                        // Tooltip saat mouse diarahkan ke kotak
+                        '<?= esc($p['jabatan']); ?>'
+                    ],
+                <?php endforeach; ?>
+            ]);
 
-            // 3. Transformasi data menjadi spesifik HTML
-            const formattedData = rawData.map(item => {
-                // Desain spesifik isi kotak menggunakan HTML string
-                const htmlDisplay = `
-                    <div class="custom-node">
-                        <div class="node-name">${item.nama}</div>
-                        <div class="node-title">${item.jabatan}</div>
-                    </div>
-                `;
-
-                return [
-                    { 
-                        'v': String(item.id), // ID dalam bentuk string
-                        'f': htmlDisplay       // Tampilan spesifik node
-                    },
-                    item.parent_id ? String(item.parent_id) : '', // Atasan (kosong jika top level)
-                    item.jabatan // Tooltip teks
-                ];
-            });
-
-            // 4. Masukkan data ke chart
-            data.addRows(formattedData);
-
-            // 5. Konfigurasi Tampilan Gambar
+            // 4. Inisialisasi dan Render Google OrgChart
             var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+            
+            // Konfigurasi tambahan (allowHtml wajib TRUE jika menggunakan kustom tag div/HTML di atas)
             chart.draw(data, {
-                'allowHtml': true,          // WAJIB bernilai true untuk mengaktifkan HTML spesifik
-                'allowCollapse': true,      // Bisa klik node untuk menyembunyikan bawahan
-                'size': 'medium'            // Ukuran dasar bawaan (small, medium, large)
+                allowHtml: true,
+                size: 'medium' // Pilihan: 'small', 'medium', 'large'
             });
         }
     </script>

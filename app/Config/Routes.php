@@ -4,7 +4,7 @@ use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
-$routes->get('/db', 'Home::indexx');
+$routes->get('/lp', 'Home::indexx');
 
 // $routes->get('/org', 'Home::indexx');
 
@@ -37,8 +37,6 @@ $routes->get('reg/download/(:num)', 'RegulasiControllers::download/$1');
 // Rute Modul Statistik Baru
 $routes->get('googleOrgChart', 'OrganisasiControllers::googleOrgChart');
 $routes->get('balkanOrgChart', 'OrganisasiControllers::balkanOrgChart');
-
-<<<<<<< HEAD
 
 $routes->get('/', 'Home::index');
 $routes->get('/profile_pejabat', 'Home::profile_pejabat');
@@ -129,18 +127,19 @@ $routes->get('/create/sdm', 'SdmPostController::create');
 $routes->get('/edit/sdm', 'SdmPostController::edit');
 $routes->post('/update/sdm', 'SdmPostController::update');
 
-$routes->get('/sdm', 'SdmController::index');
-$routes->get('admin/berita/tambah', 'SdmController::tambah');
-$routes->get('admin/berita/edit/$1', 'SdmController::edit/$1');
-$routes->get('admin/berita/delete/$1', 'SdmController::delete/$1');
+$routes->get('/sdm', 'SdmControllers::index');
+$routes->get('admin/berita/tambah', 'SdmControllers::tambah');
+$routes->get('admin/berita/edit/$1', 'SdmControllers::edit/$1');
+$routes->get('admin/berita/delete/$1', 'SdmControllers::delete/$1');
 
 $routes->get('auth_login', 'DistControllers::auth_login');
 $routes->get('auth_forgot_password', 'DistControllers::auth_forgot_password');
-=======
+
 $routes->get('peserta', 'PesertaControllers::index');
 $routes->get('peserta/create', 'PesertaControllers::create');
 $routes->post('peserta/store', 'PesertaControllers::store');
 $routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
 $routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
 $routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
->>>>>>> a28ddf5db5e2e95c20a01b28acfd7cf554f14670
+$routes->get('peserta/statistik_peserta', 'PesertaControllers::statistik_peserta');
+

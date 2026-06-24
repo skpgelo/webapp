@@ -7,12 +7,17 @@
 
             <div class="img-gallery owl-carousel owl-theme py-15">
             <!-- <div class="testimonials owl-carousel"> -->
-                <div class="testimonials-single">
+
+            <?php $no = 1; foreach ($sdm as $p) : ?>
+             <div class="testimonials-single">
                     <img src="<?= base_url(); ?>/img/sdm/sdm (1).jpg" alt="client" class="client-img">
                     <blockquote class="blockquote">Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
                     <h6 class="mt-1 mb-1">Crystal Gordon</h6>
                     <p class="text-primary">United States</p>
                 </div>
+            <?php endforeach; ?>
+
+
                 <div class="testimonials-single">
                     <img src="<?= base_url(); ?>/img/sdm/sdm (2).jpg" alt="client" class="client-img">
                     <blockquote class="blockquote">Conveniently embrace multifunctional ideas through proactive customer service.</blockquote>

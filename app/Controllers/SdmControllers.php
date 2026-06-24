@@ -24,7 +24,7 @@ class SdmControllers extends BaseController
         //         'program_studi' => $this->grafik->prodi(),
         //         'jenis_kelamin' => $this->grafik->jenis_kelamin(),
         //     ];
-        return view('sdm/indexsdm', $data);
+        return view('sdm/index', $data);
     }
     
     public function indexslider()

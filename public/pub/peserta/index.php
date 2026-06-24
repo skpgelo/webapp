@@ -30,13 +30,13 @@
             <?php $no = 1; foreach ($peserta as $p) : ?>
             <tr>
                 <td><?= $no++; ?></td>
-                <td><?= $p['nama']; ?></td>
-                <td><?= $p['nik']; ?></td>
-                <td><?= $p['email']; ?></td>
-                <td>Desa <?= $p['desa']; ?>, Kec. <?= $p['kecamatan']; ?>, <?= $p['kabupaten_kota']; ?></td>
+                <td><?= $p->nama; ?></td>
+                <td><?= $p->nik; ?></td>
+                <td><?= $p->email; ?></td>
+                <td><?= "Desa $p->desa, Kec. $p->kecamatan, $p->kabupaten_kota"; ?></td>
                 <td>
-                    <a href="/peserta/edit/<?= $p['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="/peserta/delete/<?= $p['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</a>
+                    <a href="/peserta/edit/<?= $p->id; ?>" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/peserta/delete/<?= $p->id; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</a>
                 </td>
             </tr>
             <?php endforeach; ?>

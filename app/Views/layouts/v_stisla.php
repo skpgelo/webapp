@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title><?= $this->renderSection('title') ?> &mdash;</title>
-
+<script src="https://cloudflare.com"></script>
     <!-- General CSS Files (Gunakan helper base_url) -->
-    <link rel="stylesheet" href="<?= base_url('stisla/dist/assets/modules/bootstrap/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/modules/fontawesome/css/all.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('stisla_/dist/assets/modules/bootstrap/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('stisla_/dist/assets/modules/fontawesome/css/all.min.css') ?>">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="<?= base_url('stisla/dist/assets/css/style.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('stisla/dist/assets/css/components.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('stisla_/dist/assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('stisla_/dist/assets/css/components.css') ?>">
     
     <!-- Render css tambahan spesifik halaman jika ada (misal Google Charts) -->
     <?= $this->renderSection('styles') ?>
@@ -55,11 +55,26 @@
   </div>
 
   <!-- General JS Scripts -->
-  <script src="<?= base_url('assets/modules/jquery.min.js') ?>"></script>
-  <script src="<?= base_url('stisla/dist/assets/modules/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-  <script src="<?= base_url('stisla/dist/assets/js/stisla.js') ?>"></script>
-  <script src="<?= base_url('stisla/dist/assets/js/scripts.js') ?>"></script>
+  <script src="<?= base_url('stisla_/dist/assets/modules/jquery.min.js') ?>"></script>
+  <script src="<?= base_url('stisla_/dist/assets/modules/popper.js') ?>"></script>
+  <script src="<?= base_url('stisla_/dist/assets/modules/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+  <!-- <script src="<= base_url('stisla_/dist/assets/js/stisla.js') ?>"></script>
+  <script src="<= base_url('stisla_/dist/assets/js/scripts.js') ?>"></script> -->
+  
+<script src="<?= base_url('stisla_/dist/assets/modules/nicescroll/jquery.nicescroll.min.js') ?>"></script>
+<script src="<?= base_url('stisla_/dist/assets/modules/chart.min.js') ?>"></script>
 
+<script src="<?= base_url('stisla_/dist/assets/js/stisla.js') ?>"></script>
+<script src="<?= base_url('stisla_/dist/assets/js/scripts.js') ?>"></script>
+
+<!-- Pastikan ini dipasang setelah pemanggilan jquery.min.js -->
+<!-- <script src="https://cloudflare.com"></script> -->
+
+<!-- Muat juga Chart.js secara global untuk memastikan library-nya siap -->
+<!-- <script src="https://jsdelivr.net"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  <!-- <script src="<= base_url('assets/modules/jquery.min.js') ?>"></script>
+  <script src="<= base_url('assets/modules/bootstrap/js/bootstrap.bundle.min.js') ?>"></script> -->
   <!-- Render script tambahan spesifik halaman (Engine CRUD JS Anda) -->
   <?= $this->renderSection('scripts') ?>
 </body>

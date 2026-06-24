@@ -1,9 +1,18 @@
 <?php
 
 namespace App\Controllers;
+use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\SdmModels;
 
 class Home extends BaseController
 {
+    protected $pesertaModel;
+
+    public function __construct()
+    {
+        $this->pesertaModel = new SdmModels();
+    }
+    
     public function index(): string
     {
         return view('home/index');
@@ -11,7 +20,8 @@ class Home extends BaseController
 
     public function indexx(): string
     {
-        return view('home/indexx');
+        $data['sdm'] = $this->pesertaModel->findAll();
+        return view('home/indexx', $data);
     }
 
         public function berkala(): string
