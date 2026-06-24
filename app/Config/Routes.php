@@ -5,6 +5,15 @@ use CodeIgniter\Router\RouteCollection;
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
 $routes->get('/db', 'Home::indexx');
+$routes->get('/dash', 'Dashboard::dash');
+$routes->get('/dash1', 'Dashboard::dash1');
+
+$routes->get('/signup', 'Signup::index');
+$routes->match(['get', 'post'], 'store', 'Signup::store');
+$routes->match(['get', 'post'], 'loginAuth', 'Signin::loginAuth');
+$routes->get('/signin', 'Signin::index');
+$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+
 
 // $routes->get('/org', 'Home::indexx');
 
@@ -23,10 +32,20 @@ $routes->get('/signin', 'Signin::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 
 
-$routes->get('reg', 'RegulasiControllers::index');
+// $routes->get('reg', 'RegulasiControllers::index');
 $routes->get('reg/create', 'RegulasiControllers::create');
 $routes->post('reg/store', 'RegulasiControllers::store');
 
+$routes->get('peserta', 'PesertaControllers::index');
+$routes->get('peserta/tambah', 'PesertaControllers::create');
+$routes->get('peserta/store', 'PesertaControllers::store');
+$routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
+$routes->get('peserta/store', 'PesertaControllers::store');
+$routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
+$routes->get('peserta/download/(:num)', 'PesertaControllers::download/$1');
+
+$routes->get('tabterm', 'RegulasiControllers::tabterm');
+$routes->get('reg', 'RegulasiControllers::index');
 $routes->get('reg/edit/(:num)', 'RegulasiControllers::edit/$1');
 $routes->post('reg/update/(:num)', 'RegulasiControllers::update/$1');
 $routes->get('reg/delete/(:num)', 'RegulasiControllers::delete/$1');
@@ -35,20 +54,16 @@ $routes->get('reg/download/(:num)', 'RegulasiControllers::download/$1');
 // $routes->match(['get', 'post'], 'store', 'Signup::store');
 
 // Rute Modul Statistik Baru
-$routes->get('googleOrgChart', 'OrganisasiControllers::googleOrgChart');
-$routes->get('balkanOrgChart', 'OrganisasiControllers::balkanOrgChart');
+$routes->get('googleOrgChart', 'StatistikControllers::googleOrgChart');
+$routes->get('balkanOrgChart', 'StatistikControllers::balkanOrgChart');
 
-<<<<<<< HEAD
 
 $routes->get('/', 'Home::index');
 $routes->get('/profile_pejabat', 'Home::profile_pejabat');
 $routes->get('/ragam', 'Home::ragam');
 $routes->get('/dashstisla', 'Home::indexstisla');
 
-$routes->get('/dash', 'Dashboard::dash');
-$routes->get('/dash1', 'Dashboard::dash1');
-
-// $routes->get('/login', 'Login::index');
+$routes->get('/login', 'Login::index');
 $routes->get('/login/process', 'Login::process');
 $routes->get('/v_login', 'Admin::login');
 $routes->get('/register', 'Admin::register');
@@ -87,7 +102,7 @@ $routes->get('detailberita/(:segment)', 'Berita::detailberita/$1');
 $routes->get('/detail', 'Berita::detail_detail_berita');    
 $routes->get('/greek', 'Greek::index');    
 
-$routes->get('/produk_huku', 'ProdukHukum::produk_hukum');
+$routes->get('/produk_hukum', 'ProdukHukum::produk_hukum');
 $routes->get('/produk_hukum_uu', 'ProdukHukum::produk_hukum_uu');
 $routes->get('/tambah_produk_hukum', 'ProdukHukum::tambah_produk_hukum');
 
@@ -136,11 +151,5 @@ $routes->get('admin/berita/delete/$1', 'SdmController::delete/$1');
 
 $routes->get('auth_login', 'DistControllers::auth_login');
 $routes->get('auth_forgot_password', 'DistControllers::auth_forgot_password');
-=======
-$routes->get('peserta', 'PesertaControllers::index');
-$routes->get('peserta/create', 'PesertaControllers::create');
-$routes->post('peserta/store', 'PesertaControllers::store');
-$routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
-$routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
-$routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
->>>>>>> a28ddf5db5e2e95c20a01b28acfd7cf554f14670
+
+$routes->get('pegawai', 'Karyawan::index');

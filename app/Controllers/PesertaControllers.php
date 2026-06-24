@@ -86,4 +86,57 @@ class PesertaControllers extends BaseController
         return redirect()->to('/peserta')->with('success', 'Data berhasil dihapus.');
     
     }
-}
+
+    // 4. DELETE: Hapus Data
+    public function statistik_peserta()
+    {
+
+        // Contoh Query: SELECT pendidikan, COUNT(*) as total FROM data_penduduk GROUP BY pendidikan
+        $dataGroup = $this->pesertaModel->select('gender, COUNT(*) as total')
+                           ->groupBy('gender')
+                           ->findAll();
+
+        // Pisahkan label (pendidikan) dan nilai (total) untuk Chart.js
+        $data['label'] = [];
+        $data['total'] = [];
+
+        foreach ($dataGroup as $row) {
+            $data['label'][] = $row['gender'];
+            $data['total'][] = (int)$row['total'];
+        }
+
+        // $data['getPesertaCountData'] = $this->pesertaModel->getPesertaCountData();
+        $data['getPesertaChartData'] = $this->pesertaModel->getPesertaChartData();
+        $data['totalUsers'] = $this->pesertaModel->countAll();
+        $data['totalPeserta'] = $this->pesertaModel->where('provinsi', 'Jawa Timur')->countAllResults();
+        $data['maleCount'] = $this->pesertaModel->where('gender', 1)->countAllResults();
+        $data['femaleCount'] = $this->pesertaModel->where('gender', 2)->countAllResults();
+        $data['nbCount'] = $this->pesertaModel->where('gender', 3)->countAllResults();
+        $data['statistik_Kabkot'] = $this->pesertaModel->hitungKabkot();
+        $data['statistik_Prov'] = $this->pesertaModel->hitungProv();
+        //kondisi
+        $activeUsers = $this->pesertaModel->where('provinsi', 'Jawa Barat')->countAllResults();
+        $data['activeUsers'] = $activeUsers;
+
+        return view('peserta/statistik_peserta', $data);
+    }
+
+    public function count_peserta()
+    {
+        $data['peserta'] = $this->pesertaModel->findAll();
+
+        return view('peserta/statistik_peserta', $data);
+    }
+
+    // $db      = \Config\Database::connect();
+    // $query   = $db->query('SELECT * FROM nama_tabel');
+    // $results = $query->getResultArray();
+
+    // $jumlahData = count($results); 
+
+    // Mengambil semua data sebagai objek
+// $dataObjek = $query->getResult();
+
+// Mengambil semua data sebagai array
+// $dataArray = $query->getResultArray();
+    }   

@@ -5,11 +5,10 @@
 <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1><?= $section_header;?></h1>
           </div>
 
-          <?=$this->include('base/row')?>
-          <?=$this->include('base/sub_section_header')?>
+          <?=$this->include('base/4row')?>
+          <?=$this->include('base/4sub_section_header')?>
 
           <div class="section-body">
 
@@ -22,7 +21,7 @@
                   <div class="card-body p-0">
                     <div class="table-responsive">
                       <table class="table table-striped table-md">
-                      <!-- <thead> -->
+                      <thead>
                             <tr>
                               <th scope="col">Nomor</th>
                               <th scope="col">Tahun</th>
@@ -32,14 +31,14 @@
                               <th scope="col">Lihat</th>
                               <th scope="col">Download</th>
                             </tr>
-                          <!-- </thead>
-                          <tbody> -->
-                            <tr>
+                          </thead>
                                         <?php foreach($produk_huk as $data){ ?>
+                          <tbody>
+                            <tr>
                                             <td><?= $data['nomor'] ?></td>
-                                            <td><?= $data['tahun'] ?></td>
+                                            <td><?= $data['tgl_terbit'] ?></td>
                                             <td><?= $data['tentang'] ?></td>
-                                            <td><?= $data['hirarki'] ?></td>
+                                            <td><?= $data['id_hirarki'] ?></td>
                                             <th>keterangan</th>
                                             <th>view</th>
                                             <td><a= href="javascript:prd_download(this)">Download</a=></td>
@@ -48,7 +47,7 @@
                                             <!-- <td><a href="<= base_url().'index.php/download/lakukan_download' ?>">Download file</a></td> -->
                                         <?php } ?> 
                             </tr>
-                          <!-- </tbody> -->
+                          </tbody>
                       </table>
                     </div>
                   </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ProdukHukumModel;
+use App\Models\ProdukhukumModel;
 
 class ProdukHukum extends BaseController
 {
@@ -10,7 +10,7 @@ class ProdukHukum extends BaseController
         helper('form');
         helper('download');
         // helper('tgl_indo');
-        $produkHukumModel = new ProdukHukumModel();
+        $produkhukumModel = new ProdukhukumModel();
     }
     public function index(): string
     {
@@ -22,7 +22,7 @@ class ProdukHukum extends BaseController
         $data['title'] = 'Produk Hukum';
         $data['db'] = 'Informasi Berkala';
         $data['juduldb'] = 'Produk Hukum';
-        $data['produk_huk'] = $produkHukumModel->viewProdukHuk();
+        $data['produk_huk'] = $produkhukumModel->viewProdukHuk();
         return view('produkhukum/produk_hukum',$data);
     }
 
@@ -136,14 +136,22 @@ public function save()
 public function produk_hukum_uu(): string
 {
 
-    $produkHukumModel = new ProdukHukumModel();
+    $produkhukumModel = new ProdukhukumModel();
 
      $data['title'] = 'Produk Hukum';
      $data['section_header'] = '[Informasi Berkala]';
      $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
      $data['card_header'] = 'Daftar Produk Hukum';
-     $data['produk_huk'] = $produkHukumModel->viewProdukHuk();
+     $data['produk_huk'] = $produkhukumModel->viewProdukHuk();
     return view('produkhukum/produk_hukum_uu',$data);
 }
+        public function tab()
+    {
+        $data['title']        = 'Upload PDF';
+        $data['page_heading'] = 'Tambah Berkas Baru';
+
+        return view('regulasi/modules/mod_sidebar', $data);
+    }
+
 
 }

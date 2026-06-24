@@ -7,8 +7,8 @@
 
 <body class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Data Pengguna</h2>
-        <a href="/pengguna/create" class="btn btn-primary">Tambah Data</a>
+        <h2>Data Peserta</h2>
+        <a href="/peserta/create" class="btn btn-primary">Tambah Data</a>
     </div>
 
     <?php if (session()->getFlashdata('success')) : ?>
