@@ -36,16 +36,10 @@ $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 $routes->get('reg/create', 'RegulasiControllers::create');
 $routes->post('reg/store', 'RegulasiControllers::store');
 
-$routes->get('peserta', 'PesertaControllers::index');
-$routes->get('peserta/tambah', 'PesertaControllers::create');
-$routes->get('peserta/store', 'PesertaControllers::store');
-$routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
-$routes->get('peserta/store', 'PesertaControllers::store');
-$routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
-$routes->get('peserta/download/(:num)', 'PesertaControllers::download/$1');
-
-$routes->get('tabterm', 'RegulasiControllers::tabterm');
-$routes->get('reg', 'RegulasiControllers::index');
+$routes->get('tabprivacy', 'RegulasiControllers::tabprivacy');//bisa dipakai
+$routes->get('tabterm', 'RegulasiControllers::tabterm');//bisa dipakai
+$routes->get('tabpress', 'RegulasiControllers::tabpress');//bisa dipakai
+$routes->get('reg', 'RegulasiControllers::index');//bisa dipakai
 $routes->get('reg/edit/(:num)', 'RegulasiControllers::edit/$1');
 $routes->post('reg/update/(:num)', 'RegulasiControllers::update/$1');
 $routes->get('reg/delete/(:num)', 'RegulasiControllers::delete/$1');
@@ -161,3 +155,7 @@ $routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
 $routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
 $routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
 $routes->get('peserta/statistik_peserta', 'PesertaControllers::statistik_peserta');
+$routes->get('peserta/download/(:num)', 'PesertaControllers::download/$1');
+
+$routes->get('peserta/tambah', 'PesertaControllers::create');
+

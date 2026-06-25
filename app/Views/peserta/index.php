@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/v_stisla') ?>
+<?= $this->extend('base/stisla') ?>
 
 <?= $this->section('title') ?> Berita Per Kategori (Tabs) <?= $this->endSection() ?>
 <?= $this->section('page_header') ?> Navigasi Berita Kategori <?= $this->endSection() ?>

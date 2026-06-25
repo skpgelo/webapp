@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/v_stisla') ?>
+<?= $this->extend('layouts/stisla') ?>
 
 <?= $this->section('title') ?> Tambah Peserta <?= $this->endSection() ?>
 <?= $this->section('page_header') ?> Tambah Data Peserta <?= $this->endSection() ?>
@@ -7,7 +7,7 @@
 
 <body class="container mt-5 mb-5">
     <h2>Edit Data Peserta</h2>
-    <form action="/peserta/update/<?= $peserta->id; ?>" method="post" class="row g-3 mt-2">
+    <form action="/peserta/update/<?= $peserta['id']; ?>" method="post" class="row g-3 mt-2">
         <?= csrf_field(); ?>
         <div class="col-md-6"><label>Nama</label><input type="text" name="nama" value="<?= $peserta->nama; ?>" class="form-control" required></div>
         <div class="col-md-6"><label>NIK</label><input type="text" name="nik" value="<?= $peserta->nik; ?>" class="form-control" maxlength="16" required></div>

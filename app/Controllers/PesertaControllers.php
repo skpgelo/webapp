@@ -17,6 +17,12 @@ class PesertaControllers extends BaseController
     
     public function index()
     {
+        $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'MEDIA MASSA';
         $data['peserta'] = $this->pesertaModel->findAll();
         return view('peserta/index', $data);
     }
