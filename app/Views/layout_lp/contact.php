@@ -4,7 +4,7 @@
                     <p class="mb-2"> <span class="ti-location-pin mr-2"></span> Jalan Panoama 1, Kecamatan Lembang, Kabupaten Bandung Barat</p>
                     <div class=" d-block d-sm-inline-block">
                         <p class="mb-2">
-                            <span class="ti-email mr-2"></span> <a class="mr-4" href="mailto:support@mobileapp.com">support@mobileapp.com</a>
+                            <span class="ti-email mr-2"></span> <a class="mr-4" href="mailto:bbppksbandung@kemensos.go.id">bbppksbandung@kemensos.go.id</a>
                         </p>
                     </div>
                     <div class="d-block d-sm-inline-block">
