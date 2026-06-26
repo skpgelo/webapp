@@ -86,12 +86,14 @@
                         </tr>
                       </thead>
                       </tbody
+                       <?php $grandTotal = 0; ?>
                        <?php foreach ($statistik_Prov as $row) : ?>
                         <tr>
                             <td><?= esc($row['provinsi']); ?></td>
                             <td><?= esc($row['total']); ?></td>
                         </tr>
-                    <?php endforeach; ?>
+                      <?php $grandTotal += $row['total']; ?>
+                      <?php endforeach; ?>
                       </tbody>
                     </table>
 

@@ -21,11 +21,11 @@
 </div>
 
 <!-- MEMANGGIL MASING-MASING MODUL SECARA TERPISAH -->
-<?= $this->include('karyawan/modules/mod_statistik') ?>
-<?= $this->include('karyawan/modules/mod_chart') ?>
-<?= $this->include('karyawan/modules/mod_tabel') ?>
-<?= $this->include('karyawan/modules/mod_form') ?>
-<?= $this->include('karyawan/modules/mod_detail') ?>
+<?= $this->include('sdm/modules/mod_statistik') ?>
+<?= $this->include('sdm/modules/mod_chart') ?>
+<?= $this->include('sdm/modules/mod_tabel') ?>
+<?= $this->include('sdm/modules/mod_form') ?>
+<?= $this->include('sdm/modules/mod_detail') ?>
 
 <?= $this->endSection() ?>
 
@@ -34,8 +34,8 @@
 <script>
     const baseUrl = '<?= base_url() ?>';
 </script>
-<script src="<?= base_url('assets/js/karyawan-read.js') ?>"></script>
-<script src="<?= base_url('assets/js/karyawan-create.js') ?>"></script>
-<script src="<?= base_url('assets/js/karyawan-update.js') ?>"></script>
-<script src="<?= base_url('assets/js/karyawan-delete.js') ?>"></script>
+<script src="<?= base_url('assets/js/sdm-read.js') ?>"></script>
+<script src="<?= base_url('assets/js/sdm-create.js') ?>"></script>
+<script src="<?= base_url('assets/js/sdm-update.js') ?>"></script>
+<script src="<?= base_url('assets/js/sdm-delete.js') ?>"></script>
 <?= $this->endSection() ?>

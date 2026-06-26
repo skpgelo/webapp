@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/stisla') ?>
+<?= $this->extend('base/skeleton'); ?>
 
 <?= $this->section('styles') ?>
 <!-- DataTables CSS Bootstrap 4 -->
@@ -31,16 +31,37 @@
     </div>
 <?php endif; ?>
 
-<div class="card shadow-sm">
+<div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1><?= $section_header;?></h1>
+          </div>
+
+          <?=$this->include('base/4row')?>
+          <?=$this->include('base/4sub_section_header')?>
+
+          <div class="section-body">
+
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4><?= $card_header;?></h4>
+                                        <a href="<?= base_url('pdf/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah PDF</a>
+                  </div>
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-md" id="pdfTable">            
+<!-- <div class="card shadow-sm">
     <div class="card-header bg-whitesmoke d-flex justify-content-between align-items-center">
-        <h4><i class="fas fa-table mr-2 text-primary"></i>Manajemen Berkas Dokumen</h4>
+        <h4><i class="fas fa-table mr-2 text-primary"></i>Manajemen Berkas Dokumen</h4> -->
         <!-- Tombol Menuju Form Tambah -->
-        <a href="<?= base_url('pdf/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah PDF</a>
+        <!-- <a href="<= base_url('pdf/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah PDF</a>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive"> -->
             <!-- Tambahkan ID pdfTable di sini -->
-            <table class="table table-striped table-md align-middle mb-0" id="pdfTable">
+            <!-- <table class="table table-striped table-md align-middle mb-0" id="pdfTable"> -->
                 <thead>
                     <tr>
                         <th>Nama File</th>
@@ -54,8 +75,8 @@
                     <?php if(!empty($pdf_list)): ?>
                         <?php foreach($pdf_list as $pdf): ?>
                         <tr>
-                            <td class="font-weight-600"><?= esc($pdf['nama_file']); ?></td>
                             <td><span class="badge badge-secondary"><?= esc($pdf['kelompok']); ?></span></td>
+                            <td class="font-weight-600"><?= esc($pdf['nama_file']); ?></td>
                             <td><?= esc($pdf['ket']); ?></td>
                             <td><?= esc($pdf['tahun']); ?></td>
                             <td class="text-center">
@@ -99,6 +120,10 @@
         </div>
     </div>
 </div>
+
+          </div>
+        </section>
+      </div>
 
 <!-- MODAL DETAIL (Sama seperti sebelumnya) -->
 <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-hidden="true">

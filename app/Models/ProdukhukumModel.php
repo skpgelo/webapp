@@ -7,34 +7,34 @@ use CodeIgniter\Model;
 
 class ProdukhukumModel extends Model
 {
-    protected $table        = "produkhukum";
-    protected $primaryKey   = 'id_produkhukum';
+    // protected $table        = "regulasi";
+    // protected $primaryKey   = 'id';
 
-    protected $useAutoIncrement = true;
+    // protected $useAutoIncrement = true;
 
-    protected $returnType     = 'array';
-    protected $useSoftDeletes = true;
+    // protected $returnType     = 'array';
+    // protected $useSoftDeletes = true;
 
     // protected $allowedFields = ['name', 'email'];
 
     public function viewProdukHuk($slug = false)
     {
         if($slug === false){
-        return $this->db->table('produkhukum')
+        return $this->db->table('regulasi')
                     // ->select('berita.autor','berita.created_at','berita.lokasi','berita.create_at','berita.judul_berita','berita.isi_berita','berita.isi_gambar','galeri.gambar')
                     ->select('*')
                     // ->join('galeri', 'berita.id_berita=galeri.id_berita')
-                    ->orderBy('hirarki', 'asc')
-                    ->orderBy('tahun', 'asc')
+                    ->orderBy('id_hirarki', 'asc')
+                    ->orderBy('tgl_terbit', 'asc')
                     ->orderBy('nomor', 'asc')
                     ->get()
                     ->getResultArray();
     } else {
-        return $this->db->table('produkhukum')
+        return $this->db->table('regulasi')
                     // ->join('galeri', 'berita.id_berita=galeri.id_berita')
                     ->where('slug', $slug)
-                    ->orderBy('hirarki', 'asc')
-                    ->orderBy('tahun', 'asc')
+                    ->orderBy('id_hirarki', 'asc')
+                    ->orderBy('tgl_terbit', 'asc')
                     ->orderBy('nomor', 'asc')
                     ->get()
                     ->getRowArray();
@@ -44,21 +44,21 @@ class ProdukhukumModel extends Model
     public function viewDetailProdukHuk($slug = false)
     {
         if($slug === false){
-        return $this->db->table('produkhukum')
+        return $this->db->table('regulasi')
                     // ->select('berita.autor','berita.created_at','berita.lokasi','berita.create_at','berita.judul_berita','berita.isi_berita','berita.isi_gambar','galeri.gambar')
                     ->select('*')
                     // ->join('galeri', 'berita.id_berita=galeri.id_berita')
-                    ->orderBy('hirarki', 'asc')
-                    ->orderBy('tahun', 'asc')
+                    ->orderBy('id_hirarki', 'asc')
+                    ->orderBy('tgl_terbit', 'asc')
                     ->orderBy('nomor', 'asc')
                     ->get()
                     ->getResultArray();
     } else {
-        return $this->db->table('produkhukum')
+        return $this->db->table('regulasi')
                     // ->join('galeri', 'berita.id_berita=galeri.id_berita')
                     ->where('slug', $slug)
-                    ->orderBy('hirarki', 'asc')
-                    ->orderBy('tahun', 'asc')
+                    ->orderBy('id_hirarki', 'asc')
+                    ->orderBy('tgl_terbit', 'asc')
                     ->orderBy('nomor', 'asc')
                     ->get()
                     ->getRowArray();
@@ -68,13 +68,13 @@ class ProdukhukumModel extends Model
     function insertHirarki($data_hirarki) 
     {
         // protected $table = 'galeri';
-        return $this->db->table('hirarkihukum')->insert( $data_hirarki);
+        return $this->db->table('hirarki')->insert( $data_hirarki);
     }
 
     function insertProdHuk($data_prodhuk) 
     {
         // protected $table = 'galeri';
-        return $this->db->table('produkhukum')->insert( $data_prodhuk);
+        return $this->db->table('regulasi')->insert( $data_prodhuk);
     }
 
     public function tambahProdukHuk()

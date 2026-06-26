@@ -15,7 +15,9 @@ class Kepeg extends BaseController
 
     public function index()
     {
-        return view('kepeg/index');
+       $pegawaiModel = new KepegModel();
+        $data['struktur'] = $pegawaiModel->findAll();
+        return view('kepeg/index',$data);
     }
 
     public function org()

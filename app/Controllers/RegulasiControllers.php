@@ -24,7 +24,11 @@ class RegulasiControllers extends BaseController
         // Simulasi data dari database (ganti dengan query Model Anda jika diperlukan)
         $data['title']        = 'Daftar PDF';
         $data['page_heading'] = 'Modul Manajemen File PDF';
-        
+             $data['title'] = 'Produk Hukum';
+     $data['section_header'] = '[Informasi Berkala]';
+     $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+     $data['card_header'] = 'Daftar Produk Hukum';
+
         $data['pdf_list'] = [
             [
                 'id'        => 1,
@@ -248,5 +252,18 @@ class RegulasiControllers extends BaseController
             return redirect()->back()->with('error', 'File fisik tidak ditemukan di server.');
         }
     }
+
+        public function tabterm()
+    {
+        $data['title']        = 'Daftar PDF';
+        $data['page_heading'] = 'Modul Manajemen File PDF';
+             $data['title'] = 'Produk Hukum';
+     $data['section_header'] = '[Informasi Berkala]';
+     $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+     $data['card_header'] = 'Term & Conditions';
+
+        return view('regulasi/modules/mod_sidebar', $data);
+    }
+
 
 }
