@@ -36,7 +36,7 @@
                 <td>Desa <?= $p['desa']; ?>, Kec. <?= $p['kecamatan']; ?>, <?= $p['kabupaten_kota']; ?></td>
                 <td>
                     <a href="/peserta/edit/<?= $p['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="/peserta/delete/<?= $p['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</a>
+                    <a href="/peserta/delete/<?= $p['id'];   ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</a>
                 </td>
             </tr>
             <?php endforeach; ?>

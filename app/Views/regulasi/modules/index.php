@@ -47,7 +47,7 @@
                 <div class="card">
                   <div class="card-header">
                     <h4><?= $card_header;?></h4>
-                                        <a href="<?= base_url('pdf/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah PDF</a>
+                                        <a href="<?= base_url('reg/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah PDF</a>
                   </div>
                   <div class="card-body p-0">
                     <div class="table-responsive">
