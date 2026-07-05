@@ -160,3 +160,9 @@ $routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
 $routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
 $routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
 $routes->get('peserta/statistik_peserta', 'PesertaControllers::statistik_peserta');
+
+$routes->get('upload', 'UploadController::index');
+$routes->post('upload/proses-foto', 'UploadController::prosesFoto');
+$routes->post('upload/proses-pdf', 'UploadController::prosesPdf');
+$routes->get('upload/hapus-foto/(:num)', 'UploadController::hapusFoto/$1');
+$routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
