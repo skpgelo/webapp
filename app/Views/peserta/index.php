@@ -56,6 +56,43 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
   </div>
 </div>
 <?= $this->endSection() ?>
+=======
+
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div class="alert alert-success"><?= session()->getFlashdata('success'); ?></div>
+    <?php endif; ?>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>NIK</th>
+                <th>Email</th>
+                <th>Wilayah</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $no = 1; foreach ($peserta as $p) : ?>
+            <tr>
+                <td><?= $no++; ?></td>
+                <td><?= $p['nama']; ?></td>
+                <td><?= $p['nik']; ?></td>
+                <td><?= $p['email']; ?></td>
+                <td>Desa <?= $p['desa']; ?>, Kec. <?= $p['kecamatan']; ?>, <?= $p['kabupaten_kota']; ?></td>
+                <td>
+                    <a href="/peserta/edit/<?= $p['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/peserta/delete/<?= $p['id'];   ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus data ini?')">Hapus</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+<?= $this->endSection() ?>
+>>>>>>> 0b7ef6053a914f9fce9309d3cfbc81df0edd42be

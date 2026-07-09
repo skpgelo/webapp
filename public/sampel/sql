@@ -1,0 +1,906 @@
+CREATE TABLE tabel_foto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul_image VARCHAR(255) NOT NULL,
+    tema_image VARCHAR(255) NOT NULL,
+    nama_foto VARCHAR(255) NOT NULL,
+    waktu_upload TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tabel_pdf (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    judul_pdf VARCHAR(255) NOT NULL,
+    tema_pdf VARCHAR(255) NOT NULL,
+    nama_pdf VARCHAR(255) NOT NULL,
+    waktu_upload TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+////////////////////////////////////////////////////////////////////////////
+
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class DokumenModel extends Model
+{
+    // ==========================================
+    // LOGIKA RAW SQL UNTUK TABEL FOTO
+    // ==========================================
+    public function getAllFotoRaw()
+    {
+        return $this->db->query("SELECT * FROM tabel_foto ORDER BY waktu_upload DESC")->getResult();
+    }
+
+    public function insertFotoRaw($judul, $tema, $namaFoto)
+    {
+        $sql = "INSERT INTO tabel_foto (judul_image, tema_image, nama_foto) VALUES (?, ?, ?)";
+        return $this->db->query($sql, [$judul, $tema, $namaFoto]);
+    }
+
+    public function getFotoByIdRaw($id)
+    {
+        return $this->db->query("SELECT * FROM tabel_foto WHERE id = ?", [$id])->getRow();
+    }
+
+    public function deleteFotoRaw($id)
+    {
+        return $this->db->query("DELETE FROM tabel_foto WHERE id = ?", [$id]);
+    }
+
+    // ==========================================
+    // LOGIKA RAW SQL UNTUK TABEL PDF
+    // ==========================================
+    public function getAllPdfRaw()
+    {
+        return $this->db->query("SELECT * FROM tabel_pdf ORDER BY waktu_upload DESC")->getResult();
+    }
+
+    public function insertPdfRaw($judul, $tema, $namaPdf)
+    {
+        $sql = "INSERT INTO tabel_pdf (judul_pdf, tema_pdf, nama_pdf) VALUES (?, ?, ?)";
+        return $this->db->query($sql, [$judul, $tema, $namaPdf]);
+    }
+
+    public function getPdfByIdRaw($id)
+    {
+        return $this->db->query("SELECT * FROM tabel_pdf WHERE id = ?", [$id])->getRow();
+    }
+
+    public function deletePdfRaw($id)
+    {
+        return $this->db->query("DELETE FROM tabel_pdf WHERE id = ?", [$id]);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+
+$routes->get('upload', 'UploadController::index');
+$routes->post('upload/proses-foto', 'UploadController::prosesFoto');
+$routes->post('upload/proses-pdf', 'UploadController::prosesPdf');
+$routes->get('upload/hapus-foto/(:num)', 'UploadController::hapusFoto/$1');
+$routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
+
+////////////////////////////////////////////////////////////////
+
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+use App\Models\DokumenModel;
+
+class UploadController extends BaseController
+{
+    protected $dokumenModel;
+
+    public function __construct()
+    {
+        $this->dokumenModel = new DokumenModel();
+    }
+
+    public function index()
+    {
+        // Ambil data dari kedua tabel untuk ditampilkan di halaman view
+        $data['list_foto'] = $this->dokumenModel->getAllFotoRaw();
+        $data['list_pdf']  = $this->dokumenModel->getAllPdfRaw();
+
+        return view('form_upload', $data);
+    }
+
+    // ----------------------------------------------------
+    // PROSES UPLOAD FOTO
+    // ----------------------------------------------------
+    public function prosesFoto()
+    {
+        $rules = [
+            'judul_image' => 'required|min_length[3]|max_length[255]',
+            'tema_image'  => 'required|min_length[3]|max_length[255]',
+            'foto_hp'     => 'uploaded[foto_hp]|mime_in[foto_hp,image/jpg,image/jpeg,image/png,image/webp,image/heic,image/heif]|max_size[foto_hp,15360]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors_foto', $this->validator->getErrors());
+        }
+
+        $judul = $this->request->getPost('judul_image');
+        $tema  = $this->request->getPost('tema_image');
+        $foto  = $this->request->getFile('foto_hp');
+
+        if ($foto->isValid() && !$foto->hasMoved()) {
+            $newNameFoto = $foto->getRandomName();
+            $foto->move(FCPATH . 'uploads/', $newNameFoto);
+
+            try {
+                $this->dokumenModel->insertFotoRaw($judul, $tema, $newNameFoto);
+                return redirect()->to('upload')->with('success_foto', 'Foto HP berhasil diarsipkan!');
+            } catch (\Exception $e) {
+                if (file_exists(FCPATH . 'uploads/' . $newNameFoto)) unlink(FCPATH . 'uploads/' . $newNameFoto);
+                return redirect()->back()->with('error_foto', 'Gagal simpan DB: ' . $e->getMessage());
+            }
+        }
+    }
+
+    // ----------------------------------------------------
+    // PROSES UPLOAD PDF
+    // ----------------------------------------------------
+    public function prosesPdf()
+    {
+        $rules = [
+            'judul_pdf'   => 'required|min_length[3]|max_length[255]',
+            'tema_pdf'    => 'required|min_length[3]|max_length[255]',
+            'dokumen_pdf' => 'uploaded[dokumen_pdf]|mime_in[dokumen_pdf,application/pdf]|max_size[dokumen_pdf,5120]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors_pdf', $this->validator->getErrors());
+        }
+
+        $judul = $this->request->getPost('judul_pdf');
+        $tema  = $this->request->getPost('tema_pdf');
+        $pdf   = $this->request->getFile('dokumen_pdf');
+
+        if ($pdf->isValid() && !$pdf->hasMoved()) {
+            $newNamePdf = $pdf->getRandomName();
+            $pdf->move(FCPATH . 'uploads/', $newNamePdf);
+
+            try {
+                $this->dokumenModel->insertPdfRaw($judul, $tema, $newNamePdf);
+                return redirect()->to('upload')->with('success_pdf', 'Dokumen PDF berhasil diarsipkan!');
+            } catch (\Exception $e) {
+                if (file_exists(FCPATH . 'uploads/' . $newNamePdf)) unlink(FCPATH . 'uploads/' . $newNamePdf);
+                return redirect()->back()->with('error_pdf', 'Gagal simpan DB: ' . $e->getMessage());
+            }
+        }
+    }
+
+    // ----------------------------------------------------
+    // METHOD HAPUS (FOTO / PDF)
+    // ----------------------------------------------------
+    public function hapusFoto($id)
+    {
+        $data = $this->dokumenModel->getFotoByIdRaw($id);
+        if ($data && file_exists(FCPATH . 'uploads/' . $data->nama_foto)) {
+            unlink(FCPATH . 'uploads/' . $data->nama_foto);
+        }
+        $this->dokumenModel->deleteFotoRaw($id);
+        return redirect()->to('upload')->with('success_foto', 'Data foto dihapus.');
+    }
+
+    public function hapusPdf($id)
+    {
+        $data = $this->dokumenModel->getPdfByIdRaw($id);
+        if ($data && file_exists(FCPATH . 'uploads/' . $data->nama_pdf)) {
+            unlink(FCPATH . 'uploads/' . $data->nama_pdf);
+        }
+        $this->dokumenModel->deletePdfRaw($id);
+        return redirect()->to('upload')->with('success_pdf', 'Data PDF dihapus.');
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Arsip Terpisah</title>
+    <style>
+        body { font-family: sans-serif; margin: 30px; background-color: #f9f9f9; }
+        .row { display: flex; gap: 30px; }
+        .col { flex: 1; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 12px; }
+        label { font-weight: bold; font-size: 14px; }
+        input[type="text"], input[type="file"] { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px;}
+        button:hover { background: #0056b3; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        img { max-width: 70px; height: auto; border-radius: 4px; }
+        .error-box { color: red; font-size: 13px; margin-bottom: 10px; }
+        .success-box { color: green; font-weight: bold; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-bottom: 30px;">Manajemen Berkas & Dokumen</h1>
+
+    <div class="row">
+        
+        <!-- KOLOM 1: KHUSUS MODUL FOTO IMAGE -->
+        <div class="col">
+            <h2>📷 Form Upload Foto HP</h2>
+            
+            <?php if (session()->getFlashdata('success_foto')) : ?><div class="success-box"><?= session()->getFlashdata('success_foto') ?></div><?php endif; ?>
+            <?php if (session()->getFlashdata('error_foto')) : ?><div class="error-box"><?= session()->getFlashdata('error_foto') ?></div><?php endif; ?>
+            <?php if (session()->getFlashdata('errors_foto')) : ?>
+                <div class="error-box"><ul><?php foreach (session()->getFlashdata('errors_foto') as $e) : ?><li><?= esc($e) ?></li><?php endforeach ?></ul></div>
+            <?php endif; ?>
+
+            <form action="<?= base_url('upload/proses-foto') ?>" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
+                <div class="form-group">
+                    <label>Judul Gambar:</label>
+                    <input type="text" name="judul_image" value="<?= old('judul_image') ?>" placeholder="Contoh: Foto Kegiatan Event" required>
+                </div>
+                <div class="form-group">
+                    <label>Tema Gambar:</label>
+                    <input type="text" name="tema_image" value="<?= old('tema_image') ?>" placeholder="Contoh: Gathering Kerja" required>
+                </div>
+                <div class="form-group">
+                    <label>Pilih File Foto (Maks 15MB):</label>
+                    <input type="file" name="foto_hp" accept="image/*" required>
+                </div>
+                <button type="submit">Simpan Foto</button>
+            </form>
+
+            <h3>Daftar Foto Terunggah</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pratinjau</th>
+                        <th>Info Detail</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if(!empty($list_foto)): foreach($list_foto as $f): ?>
+                    <tr>
+                        <td><img src="<?= base_url('uploads/'.$f->nama_foto) ?>"></td>
+                        <td>
+                            <strong>Judul:</strong> <?= esc($f->judul_image) ?><br>
+                            <strong>Tema:</strong> <?= esc($f->tema_image) ?><br>
+                            <small style="color:#666;"><?= esc($f->nama_foto) ?></small>
+                        </td>
+                        <td>
+                            <a href="<?= base_url('upload/hapus-foto/'.$f->id) ?>" style="color:red;" onclick="return confirm('Hapus foto?')">Hapus</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; else: ?><tr><td colspan="3" style="text-align:center;">Kosong</td></tr><?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- KOLOM 2: KHUSUS MODUL DOKUMEN PDF -->
+        <div class="col">
+            <h2>📄 Form Upload Dokumen PDF</h2>
+            
+            <?php if (session()->getFlashdata('success_pdf')) : ?><div class="success-box"><?= session()->getFlashdata('success_pdf') ?></div><?php endif; ?>
+            <?php if (session()->getFlashdata('error_pdf')) : ?><div class="error-box"><?= session()->getFlashdata('error_pdf') ?></div><?php endif; ?>
+            <?php if (session()->getFlashdata('errors_pdf')) : ?>
+                <div class="error-box"><ul><?php foreach (session()->getFlashdata('errors_pdf') as $e) : ?><li><?= esc($e) ?></li><?php endforeach ?></ul></div>
+            <?php endif; ?>
+
+            <form action="<?= base_url('upload/proses-pdf') ?>" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
+                <div class="form-group">
+                    <label>Judul PDF:</label>
+                    <input type="text" name="judul_pdf" value="<?= old('judul_pdf') ?>" placeholder="Contoh: Laporan Keuangan Q1" required>
+                </div>
+                <div class="form-group">
+                    <label>Tema PDF:</label>
+                    <input type="text" name="tema_pdf" value="<?= old('tema_pdf') ?>" placeholder="Contoh: Akuntansi" required>
+                </div>
+                <div class="form-group">
+                    <label>Pilih File PDF (Maks 5MB):</label>
+                    <input type="file" name="dokumen_pdf" accept=".pdf" required>
+                </div>
+                <button type="submit" style="background: #28a745;">Simpan PDF</button>
+            </form>
+
+            <h3>Daftar PDF Terunggah</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Berkas</th>
+                        <th>Info Detail</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if(!empty($list_pdf)): foreach($list_pdf as $p): ?>
+                    <tr>
+                        <td style="text-align:center; font-size:24px;">📕</td>
+                        <td>
+                            <strong>Judul:</strong> <?= esc($p->judul_pdf) ?><br>
+                            <strong>Tema:</strong> <?= esc($p->tema_pdf) ?><br>
+                            <a href="<?= base_url('uploads/'.$p->nama_pdf) ?>" target="_blank">Buka Dokumen</a>
+                        </td>
+                        <td>
+                            <a href="<?= base_url('upload/hapus-pdf/'.$p->id) ?>" style="color:red;" onclick="return confirm('Hapus PDF?')">Hapus</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; else: ?><tr><td colspan="3" style="text-align:center;">Kosong</td></tr><?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+///////////////////////////////////////////////////////////////////////////////
+
+    // ----------------------------------------------------
+    // PROSES UPLOAD FOTO (DENGAN VALIDASI TEKS KETAT)
+    // ----------------------------------------------------
+    public function prosesFoto()
+    {
+        // alpha_numeric_punct: Hanya mengizinkan huruf, angka, spasi, dan tanda baca standar.
+        // Menolak karakter ekstrim seperti tag HTML (<, >, /), backslash (\), dll.
+        $rules = [
+            'judul_image' => 'required|min_length[3]|max_length[100]|alpha_numeric_punct',
+            'tema_image'  => 'required|min_length[3]|max_length[50]|alpha_numeric_punct',
+            'foto_hp'     => 'uploaded[foto_hp]|mime_in[foto_hp,image/jpg,image/jpeg,image/png,image/webp,image/heic,image/heif]|max_size[foto_hp,15360]'
+        ];
+
+        // Kustom pesan error jika input teks mengandung karakter berbahaya
+        $messages = [
+            'judul_image' => [
+                'alpha_numeric_punct' => 'Judul hanya boleh berisi huruf, angka, spasi, dan tanda baca standar. Karakter ilegal ditolak!'
+            ],
+            'tema_image' => [
+                'alpha_numeric_punct' => 'Tema hanya boleh berisi huruf, angka, spasi, dan tanda baca standar. Karakter ilegal ditolak!'
+            ]
+        ];
+
+        if (!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('errors_foto', $this->validator->getErrors());
+        }
+
+        // SANITASI EKSTRA: Gunakan strip_tags untuk membersihkan jika ada sisa tag HTML/Skrip
+        $judul = strip_tags($this->request->getPost('judul_image'));
+        $tema  = strip_tags($this->request->getPost('tema_image'));
+        $foto  = $this->request->getFile('foto_hp');
+
+        if ($foto->isValid() && !$foto->hasMoved()) {
+            $newNameFoto = $foto->getRandomName();
+            $foto->move(FCPATH . 'uploads/', $newNameFoto);
+
+            try {
+                $this->dokumenModel->insertFotoRaw($judul, $tema, $newNameFoto);
+                return redirect()->to('upload')->with('success_foto', 'Foto HP berhasil diarsipkan dengan aman!');
+            } catch (\Exception $e) {
+                if (file_exists(FCPATH . 'uploads/' . $newNameFoto)) unlink(FCPATH . 'uploads/' . $newNameFoto);
+                return redirect()->back()->with('error_foto', 'Gagal simpan DB: ' . $e->getMessage());
+            }
+        }
+    }
+
+    // ----------------------------------------------------
+    // PROSES UPLOAD PDF (DENGAN VALIDASI TEKS KETAT)
+    // ----------------------------------------------------
+    public function prosesPdf()
+    {
+        $rules = [
+            'judul_pdf'   => 'required|min_length[3]|max_length[100]|alpha_numeric_punct',
+            'tema_pdf'    => 'required|min_length[3]|max_length[50]|alpha_numeric_punct',
+            'dokumen_pdf' => 'uploaded[dokumen_pdf]|mime_in[dokumen_pdf,application/pdf]|max_size[dokumen_pdf,5120]'
+        ];
+
+        $messages = [
+            'judul_pdf' => [
+                'alpha_numeric_punct' => 'Judul PDF hanya boleh berisi huruf, angka, spasi, dan tanda baca standar.'
+            ],
+            'tema_pdf' => [
+                'alpha_numeric_punct' => 'Tema PDF hanya boleh berisi huruf, angka, spasi, dan tanda baca standar.'
+            ]
+        ];
+
+        if (!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('errors_pdf', $this->validator->getErrors());
+        }
+
+        // SANITASI EKSTRA: Membersihkan input dari potensi injeksi tag
+        $judul = strip_tags($this->request->getPost('judul_pdf'));
+        $tema  = strip_tags($this->request->getPost('tema_pdf'));
+        $pdf   = $this->request->getFile('dokumen_pdf');
+
+        if ($pdf->isValid() && !$pdf->hasMoved()) {
+            $newNamePdf = $pdf->getRandomName();
+            $pdf->move(FCPATH . 'uploads/', $newNamePdf);
+
+            try {
+                $this->dokumenModel->insertPdfRaw($judul, $tema, $newNamePdf);
+                return redirect()->to('upload')->with('success_pdf', 'Dokumen PDF berhasil diarsipkan dengan aman!');
+            } catch (\Exception $e) {
+                if (file_exists(FCPATH . 'uploads/' . $newNamePdf)) unlink(FCPATH . 'uploads/' . $newNamePdf);
+                return redirect()->back()->with('error_pdf', 'Gagal simpan DB: ' . $e->getMessage());
+            }
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////////
+
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class DokumenModel extends Model
+{
+    protected $table = 'tabel_dokumen';
+
+    public function getAllFotoRaw() {
+        return $this->db->query("SELECT * FROM tabel_foto ORDER BY waktu_upload DESC")->getResult();
+    }
+
+    // Tambah parameter $deskripsi pada Raw SQL INSERT
+    public function insertFotoRaw($judul, $tema, $deskripsi, $namaFoto) {
+        $sql = "INSERT INTO tabel_foto (judul_image, tema_image, deskripsi_foto, nama_foto) VALUES (?, ?, ?, ?)";
+        return $this->db->query($sql, [$judul, $tema, $deskripsi, $namaFoto]);
+    }
+
+    public function getAllPdfRaw() {
+        return $this->db->query("SELECT * FROM tabel_pdf ORDER BY waktu_upload DESC")->getResult();
+    }
+
+    // Tambah parameter $deskripsi pada Raw SQL INSERT
+    public function insertPdfRaw($judul, $tema, $deskripsi, $namaPdf) {
+        $sql = "INSERT INTO tabel_pdf (judul_pdf, tema_pdf, deskripsi_pdf, nama_pdf) VALUES (?, ?, ?, ?)";
+        return $this->db->query($sql, [$judul, $tema, $deskripsi, $newNamePdf]);
+    }
+
+    // ... (Fungsi hapus tetap sama seperti sebelumnya) ...
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+    // ----------------------------------------------------
+    // PROSES UPLOAD FOTO (DENGAN CKEDITOR)
+    // ----------------------------------------------------
+    public function prosesFoto()
+    {
+        $rules = [
+            'judul_image'    => 'required|min_length[3]|max_length[100]|alpha_numeric_punct',
+            'tema_image'     => 'required|min_length[3]|max_length[100]|alpha_numeric_punct',
+            'deskripsi_foto' => 'required', // Biarkan fleksibel untuk menampung HTML dari CKEditor
+            'foto_hp'        => 'uploaded[foto_hp]|mime_in[foto_hp,image/jpg,image/jpeg,image/png,image/webp]|max_size[foto_hp,15360]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors_foto', $this->validator->getErrors());
+        }
+
+        $judul = strip_tags($this->request->getPost('judul_image'));
+        $tema  = strip_tags($this->request->getPost('tema_image'));
+        
+        // AMANKAN CKEDITOR: Konversi elemen HTML menjadi entitas teks aman agar script tidak bisa mengeksekusi malware
+        $deskripsi = htmlentities($this->request->getPost('deskripsi_foto'), ENT_QUOTES, 'UTF-8');
+        
+        $foto  = $this->request->getFile('foto_hp');
+
+        if ($foto->isValid() && !$foto->hasMoved()) {
+            $newNameFoto = $foto->getRandomName();
+            $foto->move(FCPATH . 'uploads/', $newNameFoto);
+
+            try {
+                // Kirim data deskripsi ke Model
+                $this->dokumenModel->insertFotoRaw($judul, $tema, $deskripsi, $newNameFoto);
+                return redirect()->to('upload')->with('success_foto', 'Foto HP dan deskripsi berhasil disimpan!');
+            } catch (\Exception $e) {
+                if (file_exists(FCPATH . 'uploads/' . $newNameFoto)) unlink(FCPATH . 'uploads/' . $newNameFoto);
+                return redirect()->back()->with('error_foto', 'Gagal simpan DB: ' . $e->getMessage());
+            }
+        }
+    }
+
+    // ----------------------------------------------------
+    // PROSES UPLOAD PDF (DENGAN CKEDITOR)
+    // ----------------------------------------------------
+    public function prosesPdf()
+    {
+        $rules = [
+            'judul_pdf'     => 'required|min_length[3]|max_length[100]|alpha_numeric_punct',
+            'tema_pdf'      => 'required|min_length[3]|max_length[100]|alpha_numeric_punct',
+            'deskripsi_pdf' => 'required',
+            'dokumen_pdf'   => 'uploaded[dokumen_pdf]|mime_in[dokumen_pdf,application/pdf]|max_size[dokumen_pdf,5120]'
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors_pdf', $this->validator->getErrors());
+        }
+
+        $judul = strip_tags($this->request->getPost('judul_pdf'));
+        $tema  = strip_tags($this->request->getPost('tema_pdf'));
+        
+        // AMANKAN CKEDITOR
+        $deskripsi = htmlentities($this->request->getPost('deskripsi_pdf'), ENT_QUOTES, 'UTF-8');
+        
+        $pdf   = $this->request->getFile('dokumen_pdf');
+
+        if ($pdf->isValid() && !$pdf->hasMoved()) {
+            $newNamePdf = $pdf->getRandomName();
+            $pdf->move(FCPATH . 'uploads/', $newNamePdf);
+
+            try {
+                $this->dokumenModel->insertPdfRaw($judul, $tema, $deskripsi, $newNamePdf);
+                return redirect()->to('upload')->with('success_pdf', 'Dokumen PDF dan deskripsi berhasil disimpan!');
+            } catch (\Exception $e) {
+                if (file_exists(FCPATH . 'uploads/' . $newNamePdf)) unlink(FCPATH . 'uploads/' . $newNamePdf);
+                return redirect()->back()->with('error_pdf', 'Gagal simpan DB: ' . $e->getMessage());
+            }
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Arsip Terpisah + CKEditor</title>
+    <!-- 1. LOAD CDN CKEDITOR 5 -->
+    <script src="https://ckeditor.com"></script>
+    <style>
+        body { font-family: sans-serif; margin: 30px; background-color: #f9f9f9; }
+        .row { display: flex; gap: 30px; }
+        .col { flex: 1; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .form-group { margin-bottom: 12px; }
+        label { font-weight: bold; font-size: 14px; }
+        input[type="text"], input[type="file"] { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px;}
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        img { max-width: 70px; height: auto; border-radius: 4px; }
+        /* Styling tambahan agar tampilan CKEditor rapi */
+        .ck-editor__editable { min-height: 120px; } 
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-bottom: 30px;">Manajemen Berkas & CKEditor</h1>
+
+    <div class="row">
+        <!-- FORM FOTO -->
+        <div class="col">
+            <h2>📷 Form Upload Foto HP</h2>
+            <!-- [Notifikasi Error/Sukses tetap sama seperti kode sebelumnya] -->
+            
+            <form action="<?= base_url('upload/proses-foto') ?>" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
+                <div class="form-group"><label>Judul Gambar:</label><input type="text" name="judul_image" required></div>
+                <div class="form-group"><label>Tema Gambar:</label><input type="text" name="tema_image" required></div>
+                
+                <!-- Input Textarea Baru untuk CKEditor Foto -->
+                <div class="form-group">
+                    <label>Deskripsi Foto:</label>
+                    <textarea name="deskripsi_foto" id="editor_foto"><?= old('deskripsi_foto') ?></textarea>
+                </div>
+                
+                <div class="form-group"><label>Pilih File Foto (Maks 15MB):</label><input type="file" name="foto_hp" accept="image/*" required></div>
+                <button type="submit">Simpan Foto</button>
+            </form>
+
+            <!-- Tabel Tampil Foto -->
+            <table>
+                <thead><tr><th>Pratinjau</th><th>Info Detail</th><th>Aksi</th></tr></thead>
+                <tbody>
+                    <?php if(!empty($list_foto)): foreach($list_foto as $f): ?>
+                    <tr>
+                        <td><img src="<?= base_url('uploads/'.$f->nama_foto) ?>"></td>
+                        <td>
+                            <strong>Judul:</strong> <?= esc($f->judul_image) ?><br>
+                            <strong>Tema:</strong> <?= esc($f->tema_image) ?><br>
+                            
+                            <strong>Deskripsi:</strong> <div>deskripsi_foto) ?></div>
+                        </td>
+                        <td><a href="<?= base_url('upload/hapus-foto/'.$f->id) ?>" style="color:red;" onclick="return confirm('Hapus?')">Hapus</a></td>
+                    </tr>
+                    <?php endforeach; else: ?><tr><td colspan="3" style="text-align:center;">Kosong</td></tr><?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FORM PDF -->
+        <div class="col">
+            <h2>📄 Form Upload Dokumen PDF</h2>
+            <!-- [Notifikasi Error/Sukses tetap sama seperti kode sebelumnya] -->
+
+            <form action="<?= base_url('upload/proses-pdf') ?>" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
+                <div class="form-group"><label>Judul PDF:</label><input type="text" name="judul_pdf" required></div>
+                <div class="form-group"><label>Tema PDF:</label><input type="text" name="tema_pdf" required></div>
+                
+                <!-- Input Textarea Baru untuk CKEditor PDF -->
+                <div class="form-group">
+                    <label>Deskripsi PDF:</label>
+                    <textarea name="deskripsi_pdf" id="editor_pdf"><?= old('deskripsi_pdf') ?></textarea>
+                </div>
+                
+                <div class="form-group"><label>Pilih File PDF (Maks 5MB):</label><input type="file" name="dokumen_pdf" accept=".pdf" required></div>
+                <button type="submit" style="background: #28a745;">Simpan PDF</button>
+            </form>
+
+            <!-- Tabel Tampil PDF -->
+            <table>
+                <thead><tr><th>Berkas</th><th>Info Detail</th><th>Aksi</th></tr></thead>
+                <tbody>
+                    <?php if(!empty($list_pdf)): foreach($list_pdf as $p): ?>
+                    <tr>
+                        <td style="text-align:center; font-size:24px;">📕</td>
+                        <td>
+                            <strong>Judul:</strong> <?= esc($p->judul_pdf) ?><br>
+                            <strong>Tema:</strong> <?= esc($p->tema_pdf) ?><br>
+                            <!-- Render HTML CKEditor -->
+                            <strong>Deskripsi:</strong> <div>deskripsi_pdf) ?></div>
+                            <a href="<?= base_url('uploads/'.$p->nama_pdf) ?>" target="_blank">Buka Dokumen</a>
+                        </td>
+                        <td><a href="<?= base_url('upload/hapus-pdf/'.$p->id) ?>" style="color:red;" onclick="return confirm('Hapus?')">Hapus</a></td>
+                    </tr>
+                    <?php endforeach; else: ?><tr><td colspan="3" style="text-align:center;">Kosong</td></tr><?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 2. INISIALISASI CKEDITOR VIA JAVASCRIPT DI AKHIR HALAMAN -->
+    <script>
+        ClassicEditor.create(document.querySelector('#editor_foto')).catch(error => { console.error(error); });
+        ClassicEditor.create(document.querySelector('#editor_pdf')).catch(error => { console.error(error); });
+    </script>
+</body>
+</html>
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+    <script>
+        // Konfigurasi toolbar yang dibatasi (Hanya fitur esensial & aman)
+        const customToolbarConfig = {
+            toolbar: [ 
+                'bold', 
+                'italic', 
+                '|', 
+                'bulletedList', 
+                'numberedList', 
+                '|', 
+                'undo', 
+                'redo' 
+            ]
+        };
+
+        // Terapkan konfigurasi ke Editor Foto
+        ClassicEditor
+            .create(document.querySelector('#editor_foto'), customToolbarConfig)
+            .catch(error => {
+                console.error(error);
+            });
+
+        // Terapkan konfigurasi ke Editor PDF
+        ClassicEditor
+            .create(document.querySelector('#editor_pdf'), customToolbarConfig)
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
+    /////////////////////////////////////////////////////////////
+
+Untuk mengantisipasi hal tersebut, pastikan kode PHP Anda di Controller tetap menggunakan htmlentities() seperti yang telah kita buat pada tahap sebelumnya:
+
+    $deskripsi = htmlentities($this->request->getPost('deskripsi_foto'), ENT_QUOTES, 'UTF-8');
+
+////////////////////////////////////////////////
+
+CREATE TABLE detail_foto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tabel_foto_id INT NOT NULL, -- Ini adalah Foreign Key
+    nama_foto VARCHAR(255) NOT NULL,
+    waktu_upload TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tabel_foto_id) REFERENCES tabel_foto(id) ON DELETE CASCADE
+);
+
+///////////////////////////////////////////////////////////////////////
+
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class DokumenModel extends Model
+{
+    // Ambil data foto induk beserta semua file fotonya (Digabungkan dengan GROUP_CONCAT)
+    public function getAllFotoRaw()
+    {
+        $sql = "SELECT tf.*, GROUP_CONCAT(df.nama_foto SEPARATOR ',') as banyak_foto, GROUP_CONCAT(df.id SEPARATOR ',') as banyak_id_foto
+                FROM tabel_foto tf
+                LEFT JOIN detail_foto df ON tf.id = df.tabel_foto_id
+                GROUP BY tf.id
+                ORDER BY tf.waktu_upload DESC";
+        return $this->db->query($sql)->getResult();
+    }
+
+    // Insert data induk dan kembalikan ID terakhir yang diinput
+    public function insertFotoIndukRaw($judul, $tema, $deskripsi)
+    {
+        $sql = "INSERT INTO tabel_foto (judul_image, tema_image, deskripsi_foto) VALUES (?, ?, ?)";
+        $this->db->query($sql, [$judul, $tema, $deskripsi]);
+        
+        // Mengambil ID barusan untuk kebutuhan Foreign Key
+        return $this->db->insertID();
+    }
+
+    // Insert banyak file ke tabel anak (detail_foto)
+    public function insertDetailFotoRaw($tabelFotoId, $namaFoto)
+    {
+        $sql = "INSERT INTO detail_foto (tabel_foto_id, nama_foto) VALUES (?, ?)";
+        return $this->db->query($sql, [$tabelFotoId, $namaFoto]);
+    }
+
+    // Ambil satu data induk foto untuk proses hapus
+    public function getFotoByIdRaw($id)
+    {
+        return $this->db->query("SELECT * FROM tabel_foto WHERE id = ?", [$id])->getRow();
+    }
+
+    // Ambil semua file foto dari tabel anak berdasarkan ID induk
+    public function getDetailFotoByIndukRaw($tabelFotoId)
+    {
+        return $this->db->query("SELECT nama_foto FROM detail_foto WHERE tabel_foto_id = ?", [$tabelFotoId])->getResult();
+    }
+
+    // Hapus data induk (Otomatis menghapus detail di DB karena CASCADE)
+    public function deleteFotoRaw($id)
+    {
+        return $this->db->query("DELETE FROM tabel_foto WHERE id = ?", [$id]);
+    }
+
+    // ... (Fungsi PDF tetap sama seperti tahap sebelumnya) ...
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+    public function prosesFoto()
+    {
+        // Ubah rules foto_hp agar mendukung pengecekan multi-file (menggunakan tanda kurung siku)
+        $rules = [
+            'judul_image'    => 'required|min_length[3]|max_length[255]|alpha_numeric_punct',
+            'tema_image'     => 'required|min_length[3]|max_length[255]|alpha_numeric_punct',
+            'deskripsi_foto' => 'required',
+            'foto_hp'        => 'uploaded[foto_hp]|max_size[foto_hp,15360]' // Validasi dasar upload
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors_foto', $this->validator->getErrors());
+        }
+
+        $judul     = strip_tags($this->request->getPost('judul_image'));
+        $tema      = strip_tags($this->request->getPost('tema_image'));
+        $deskripsi = htmlentities($this->request->getPost('deskripsi_foto'), ENT_QUOTES, 'UTF-8');
+
+        // 1. Simpan data induk terlebih dahulu dan dapatkan ID-nya
+        try {
+            $indukId = $this->dokumenModel->insertFotoIndukRaw($judul, $tema, $deskripsi);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error_foto', 'Gagal simpan data induk: ' . $e->getMessage());
+        }
+
+        // 2. Ambil berkas-berkas dari input file multi
+        $files = $this->request->getFileMultiple('foto_hp');
+        $uploadedNames = [];
+
+        foreach ($files as $file) {
+            // Validasi MIME Type secara manual untuk setiap file di dalam loop agar aman dari malware
+            $mimeType = $file->getMimeType();
+            $allowedMimes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+            if ($file->isValid() && !$file->hasMoved() && in_array($mimeType, $allowedMimes)) {
+                $newName = $file->getRandomName();
+                $file->move(FCPATH . 'uploads/', $newName);
+                
+                // Simpan nama file terupload untuk cadangan pembatalan jika SQL error
+                $uploadedNames[] = $newName;
+
+                // 3. Simpan ke tabel anak (detail_foto) dengan menyertakan ID Induk
+                try {
+                    $this->dokumenModel->insertDetailFotoRaw($indukId, $newName);
+                } catch (\Exception $e) {
+                    // Jika gagal di tengah jalan, hapus semua file yang terlanjur terupload
+                    foreach ($uploadedNames as $name) {
+                        if (file_exists(FCPATH . 'uploads/' . $name)) unlink(FCPATH . 'uploads/' . $name);
+                    }
+                    // Hapus juga data induk yang terlanjur masuk
+                    $this->dokumenModel->deleteFotoRaw($indukId);
+                    return redirect()->back()->with('error_foto', 'Gagal simpan detail foto ke database.');
+                }
+            }
+        }
+
+        return redirect()->to('upload')->with('success_foto', 'Banyak foto berhasil disimpan sekaligus!');
+    }
+
+    // Method Hapus Foto yang disempurnakan untuk menghapus semua file fisik anak
+    public function hapusFoto($id)
+    {
+        // Ambil semua daftar file foto terkait dari tabel anak sebelum dihapus
+        $daftarFoto = $this->dokumenModel->getDetailFotoByIndukRaw($id);
+        
+        foreach ($daftarFoto as $f) {
+            if (file_exists(FCPATH . 'uploads/' . $f->nama_foto)) {
+                unlink(FCPATH . 'uploads/' . $f->nama_foto);
+            }
+        }
+
+        // Hapus data induk (Otomatis menghapus detail_foto di DB karena relasi CASCADE)
+        $this->dokumenModel->deleteFotoRaw($id);
+        return redirect()->to('upload')->with('success_foto', 'Seluruh rangkaian album foto berhasil dihapus.');
+    }
+
+////////////////////////////////////////////////
+
+            <!-- FORM UPLOAD FOTO (MENDUKUNG MULTI FILES) -->
+            <form action="<?= base_url('upload/proses-foto') ?>" method="POST" enctype="multipart/form-data">
+                <?= csrf_field() ?>
+                <div class="form-group"><label>Judul Gambar:</label><input type="text" name="judul_image" required></div>
+                <div class="form-group"><label>Tema Gambar:</label><input type="text" name="tema_image" required></div>
+                
+                <div class="form-group">
+                    <label>Deskripsi Foto:</label>
+                    <textarea name="deskripsi_foto" id="editor_foto"><?= old('deskripsi_foto') ?></textarea>
+                </div>
+                
+                <!-- TAMBAHKAN ATTRIBUT multiple DAN TANDA [] PADA NAME -->
+                <div class="form-group">
+                    <label>Pilih Banyak File Foto Sekaligus (Maks 15MB/file):</label>
+                    <input type="file" name="foto_hp[]" accept="image/*" multiple required>
+                </div>
+                <button type="submit">Simpan Foto</button>
+            </form>
+
+            <h3>Daftar Album Foto Terunggah</h3>
+            <table>
+                <thead><tr><th>Kumpulan Foto</th><th>Info Detail</th><th>Aksi</th></tr></thead>
+                <tbody>
+                    <?php if(!empty($list_foto)): foreach($list_foto as $f): ?>
+                    <tr>
+                        <td>
+                            <!-- Looping untuk memecah string foto yang digabungkan GROUP_CONCAT -->
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;">
+                                <?php 
+                                if(!empty($f->banyak_foto)) {
+                                    $arr_foto = explode(',', $f->banyak_foto);
+                                    foreach($arr_foto as $img) {
+                                        echo '<img src="'.base_url('uploads/'.$img).'" style="width:100%; max-width:60px; height:auto; object-fit:cover;">';
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </td>
+                        <td>
+                            <strong>Judul:</strong> <?= esc($f->judul_image) ?><br>
+                            <strong>Tema:</strong> <?= esc($f->tema_image) ?><br>
+                            <strong>Deskripsi:</strong> <div>deskripsi_foto) ?></div>
+                        </td>
+                        <td><a href="<?= base_url('upload/hapus-foto/'.$f->id) ?>" style="color:red;" onclick="return confirm('Hapus seluruh album foto ini?')">Hapus</a></td>
+                    </tr>
+                    <?php endforeach; else: ?><tr><td colspan="3" style="text-align:center;">Kosong</td></tr><?php endif; ?>
+                </tbody>
+            </table>
+
+///////////////////////////////////////////
+
