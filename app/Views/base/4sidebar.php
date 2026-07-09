@@ -31,38 +31,50 @@
                 <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
               </ul>
             </li>
-            <li class="active"><a class="nav-link" href="<?= base_url() ?>employee"><i class="fas fa-users"></i> <span>Sumberdaya Manusia</span></a></li>
-            <li>
-              <a class="nav-link" href="<?= base_url() ?>berita/berita_terkini"><i class="far fa-square"></i> <span>Berita</span></a></li>
-            <li>
-              <a class="nav-link" href="<?= base_url() ?>reg"><i class="far fa-square"></i> <span>Regulasi</span></a></li>
             <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Bootstrap</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i> <span>Sumberdaya Manusia</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
-                <li><a class="nav-link" href="bootstrap-badge.html">Badge</a></li>
-                <li><a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a></li>
-                <li><a class="nav-link" href="bootstrap-buttons.html">Buttons</a></li>
-                <li><a class="nav-link" href="bootstrap-card.html">Card</a></li>
-                <li><a class="nav-link" href="bootstrap-carousel.html">Carousel</a></li>
-                <li><a class="nav-link" href="bootstrap-collapse.html">Collapse</a></li>
-                <li><a class="nav-link" href="bootstrap-dropdown.html">Dropdown</a></li>
-                <li><a class="nav-link" href="bootstrap-form.html">Form</a></li>
-                <li><a class="nav-link" href="bootstrap-list-group.html">List Group</a></li>
-                <li><a class="nav-link" href="bootstrap-media-object.html">Media Object</a></li>
-                <li><a class="nav-link" href="bootstrap-modal.html">Modal</a></li>
-                <li><a class="nav-link" href="bootstrap-nav.html">Nav</a></li>
-                <li><a class="nav-link" href="bootstrap-navbar.html">Navbar</a></li>
-                <li><a class="nav-link" href="bootstrap-pagination.html">Pagination</a></li>
-                <li><a class="nav-link" href="bootstrap-popover.html">Popover</a></li>
-                <li><a class="nav-link" href="bootstrap-progress.html">Progress</a></li>
-                <li><a class="nav-link" href="bootstrap-table.html">Table</a></li>
-                <li><a class="nav-link" href="bootstrap-tooltip.html">Tooltip</a></li>
-                <li><a class="nav-link" href="bootstrap-typography.html">Typography</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>utama/list">Semua SDM</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Pencarian SDM</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Tambah SDM</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Edit SDM</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Hapus SDM</a></li>
               </ul>
             </li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Regulasi</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="<?= base_url() ?>produk_hukum_uu">Semua Regulasi</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Pencarian Regulasi</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Tambah Regulasi</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Edit Regulasi</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Hapus Regulasi</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Berita</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Semua Berita</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Berita Terbaru</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Berita Satu Minggu</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Tambah Berita</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Edit Berita</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Hapus Berita</a></li>
+               </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Galeri Foto</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="<?= base_url() ?>v_galeri">Semua Foto</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Foto Terbaru</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Foto Tematik</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Tambah Foto</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Edit Foto</a></li>
+                <li><a class="nav-link" href="<?= base_url() ?>reg">Hapus Foto</a></li>
+               </ul>
+            </li>
             <li class="menu-header">Stisla</li>
-            <li class="dropdown active">
+            <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Components</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="components-article.html">Article</a></li>                

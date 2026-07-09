@@ -11,7 +11,7 @@ use Config\Services; //library kompresi ukuran file, mengubah resolusi (resize),
 class BeritaControllers extends BaseController
 {
     protected $db;
-    protected $helpers = ['character_limiter', 'text'];
+    protected $helpers = ['character_limiter', 'text', 'dateID'];
     
     public function __construct()
     {
@@ -23,7 +23,7 @@ class BeritaControllers extends BaseController
     public function index()
     {
         $data['kategori'] = $this->db->table('kategori')->get()->getResultArray();
-        return view('berita/v_input_berita', $data);
+        return view('galeri/module/mod_form_tematik', $data);
     }
 
     public function indexx()
@@ -251,13 +251,19 @@ public function detail($id)
     }
 
     // 2. Ambil semua gambar galeri yang memiliki foreign key (berita_id) sesuai
-    $galeri = $galeriModel->where('id', $id)->findAll();
+    $galeri = $galeriModel->where('berita_id', $id)->findAll();
 
     // 3. Kirim data ke View
     $data = [
         'berita' => $berita,
         'galeri' => $galeri
     ];
+        $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'Buat Berita Baru';
 
     return view('berita/detail_berita', $data);
 }
@@ -469,6 +475,13 @@ public function detail($id)
             JOIN kategori k ON n.id_kategori = k.id 
             ORDER BY n.created_at DESC
         ")->getResultArray();
+
+        $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'Buat Berita Baru';
 
         return view('berita/v_display_berita', $data);
     }

@@ -41,7 +41,6 @@
               </div>
 
 
-    <div class="container">
         <!-- <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-bold mb-0 border-start border-success border-4 ps-2"></h3>
             <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill">
@@ -193,7 +192,7 @@
                 <p class="text-muted mb-0 fs-5 italic">Tidak ada berita baru yang diterbitkan dalam 7 hari terakhir.</p>
             </div>
         <?php endif; ?>
-    </div>
+    
 
 <!-- akhir div card -->
                 </div>

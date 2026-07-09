@@ -194,3 +194,6 @@ $routes->get('utama/download/(:any)/(:num)', 'Utama::download/$1/$2');
 $routes->get('utama/export-excel', 'Utama::exportExcel');
 $routes->get('utama/export-pdf', 'Utama::exportPdf');
 $routes->match(['get', 'post'], 'utama/list', 'UtamaController::list');
+
+$routes->get('galeri/v_galeri', 'GaleriControllers::index');
+$routes->get('galeri/v_galeri', 'GaleriControllers::index');
