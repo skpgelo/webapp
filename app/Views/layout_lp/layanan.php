@@ -14,7 +14,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
                             </div>
                            <div>
-                                <img src="<?= base_url(); ?>/img/layanan/chef.jpg" width="70px" height="70px" alt="iphone" class="img-fluid">
+                                <img src="<?= base_url(); ?>/img/layanan/layanan (1).png" width="70px" height="70px" alt="iphone" class="img-fluid">
                              </div>
                         </li>
                         <li class="media my-4">
@@ -24,7 +24,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem eveniet</p>
                             </div>
                            <div>
-                                <img src="<?= base_url(); ?>/img/layanan/itk.jpg" width="80px" height="80px" alt="iphone" class="img-fluid">
+                                <img src="<?= base_url(); ?>/img/layanan/layanan (2).png" width="80px" height="80px" alt="iphone" class="img-fluid">
                              </div>
                         </li>
                         <li class="media">
@@ -34,7 +34,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
                             </div>
                             <div>
-                                <img src="<?= base_url(); ?>/img/layanan/teacher2.jpg" width="70px" height="70px" alt="iphone" class="img-fluid">
+                                <img src="<?= base_url(); ?>/img/layanan/layanan (3).png" width="70px" height="70px" alt="iphone" class="img-fluid">
                             </div>
                         </li>
                         <li class="media">
@@ -44,7 +44,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
                             </div>
                             <div>
-                                <img src="<?= base_url(); ?>/img/layanan/akreditasi2.jpg" width="70px" height="70px" alt="iphone" class="img-fluid">
+                                <img src="<?= base_url(); ?>/img/layanan/layanan (4).png" width="70px" height="70px" alt="iphone" class="img-fluid">
                             </div>
                         </li>
                         <li class="media">
@@ -54,7 +54,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
                             </div>
                             <div>
-                                <img src="<?= base_url(); ?>/img/layanan/peksos2.jpg" width="70px" height="70px" alt="iphone" class="img-fluid">
+                                <img src="<?= base_url(); ?>/img/layanan/layanan (5).png" width="70px" height="70px" alt="iphone" class="img-fluid">
                             </div>
                         </li>
                         <li class="media">
@@ -64,7 +64,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
                             </div>
                             <div>
-                                <img src="<?= base_url(); ?>/img/layanan/penginapan.jpg" width="90px" height="90px" alt="iphone" class="img-fluid">
+                                <img src="<?= base_url(); ?>/img/layanan/layanan (6).png" width="90px" height="90px" alt="iphone" class="img-fluid">
                             </div>
                         </li>
                     </ul>

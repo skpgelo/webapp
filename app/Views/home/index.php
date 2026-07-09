@@ -18,17 +18,19 @@
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" > -->
         <!--=============== REMIXICONS ===============-->
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <!--=============== SWIPER CSS ===============-->
-        <link rel="stylesheet" href="<?= base_url(); ?>chick_carousel/assets/css/swiper-bundle.min.css">
         <!--=============== CSS dashboard===============-->
         <link rel="stylesheet" href="<?= base_url(); ?>lp_gray/css/styles.css"  />
             <!--=============== CSS ===============-->
             <!-- <link rel="stylesheet" href="<?= base_url(); ?>chick_carousel/assets/css/styles.css"> -->
-        <!--=============== CSS Berita===============-->
+        <!--=============== SWIPER CSS ===============-->
+        <link rel="stylesheet" href="<?= base_url(); ?>chick_carousel/assets/css/swiper-bundle.min.css">
+        <!--=============== CSS Berita=============== ini owl-->
         <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>owl/css/owl.carousel.min.css">
         <!-- <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>owl/css/styles.css"> -->
         <!--=============== CSS tema===============-->
         <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>oc/css/styletema.css">
+        <!--=============== CSS sdm=============== chick owl-->
+        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>owl/css/styleowl.css">
             <!--=============== CSS sdm===============-->
             <!-- <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>oc/css/styl.css"> -->
             <!--=============== CSS sdm===============-->
@@ -36,8 +38,6 @@
             <!-- <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>oc/css/bootstrap.min.css"> -->
             <!--=============== CSS ===============-->
             <!-- <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>oc/css/styleoc.css"> -->
-        <!--=============== CSS sdm===============-->
-        <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>owl/css/styleowl.css">
         <!--=============== CSS video===============-->
         <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>video_carousel/css/bootstrap-video-carousel.min.css" />
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -337,7 +337,7 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <!--=============== SWIPER JS ===============-->
         <script src="<?= base_url(); ?>chick_carousel/assets/js/swiper-bundle.min.js"></script>
-        <!--=============== MAIN JS ===============-->
+        <!--=============== MAIN JS =============== ini owl-->
         <script src="<?= base_url(); ?>chick_carousel/assets/js/main.js"></script>
         <script src="<?= base_url(); ?>owl/js/owl.carousel.min.js"></script>
         <script src="<?= base_url(); ?>owl/js/script.js"></script>

@@ -47,10 +47,10 @@ class TermControllers extends BaseController
     public function update($id)
     {
         $this->produkModel->update($id, [
-            'kode_produk' => $this->request->getPost('kode_produk'),
-            'nama_produk' => $this->request->getPost('nama_produk'),
-            'harga'       => $this->request->getPost('harga'),
-            'stok'        => $this->request->getPost('stok'),
+            'id' => $this->request->getPost('kode_produk'),
+            'id_termpenjelasan' => $this->request->getPost('nama_produk'),
+            'title'        => $this->request->getPost('stok'),
+            'term'       => $this->request->getPost('harga'),
         ]);
         return redirect()->to('/term');
     }

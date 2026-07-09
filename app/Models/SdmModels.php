@@ -21,9 +21,20 @@ class SdmModels extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-        public function getOrgData()
+    public function getGoogleOrgData()
     {
         return $this->orderBy('parent_id', 'ASC')->findAll();
     }
 
+    public function getBalkanOrgData()
+    {
+        return $this->select('id, parent_id as pid, nama as name, jabatan as title, foto as foto')
+                     ->orderBy('parent_id', 'ASC')
+                     ->orWhere('parent_id', 0)
+                     ->orWhere('parent_id', 1)
+                     ->orWhere('parent_id', 2)
+                     ->orWhere('parent_id', 2)
+                     ->orWhere('parent_id', 4)
+                     ->findAll();
+    }
 }

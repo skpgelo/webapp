@@ -42,9 +42,9 @@
                                             <th>keterangan</th>
                                             <th>view</th>
                                             <td><a= href="javascript:prd_download(this)">Download</a=></td>
-                                                <!-- <img src="<= site_url()."galeri/".$slug."/thumb_".$data->nama_file; ?>" alt="Loading Image..." > -->
-                                                <!-- <input type="checkbox" name="img_check" id="img_check" class="img_check" image="<php echo $prd_row->filename ?>"> -->
-                                            <!-- <td><a href="<= base_url().'index.php/download/lakukan_download' ?>">Download file</a></td> -->
+                                                <!-- <img src="<= site_url()."galeri/".$slug."/thumb_".$data['nama_file']; ?>" alt="Loading Image..." > -->
+                                                <input type="checkbox" name="img_check" id="img_check" class="img_check" image="<?= $data['pdf'] ?>">
+                                            <td><a href="<?= base_url().'index.php/download/lakukan_download' ?>">Download file</a></td>
                                         <?php } ?> 
                             </tr>
                           </tbody>

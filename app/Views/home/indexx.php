@@ -65,7 +65,6 @@
 
     <!-- sdm -->
         <?=$this->include('layout_lp/sdm')?>
-        <?=$this->include('layout_lp/sdm2')?>
 
     <!-- sdm -->
         <?=$this->include('layout_lp/pengaduan')?>

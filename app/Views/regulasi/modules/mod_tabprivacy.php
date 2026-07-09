@@ -133,8 +133,10 @@
                             Kami berhak untuk mengubah, menambah, atau memperbarui Syarat dan Ketentuan ini sewaktu-waktu demi menyesuaikan dengan perubahan hukum atau peningkatan sistem pelayanan. Perubahan akan diumumkan melalui halaman ini.
                           </div>
                           <div class="tab-pane fade" id="konkam4" role="tabpanel" aria-labelledby="konkam-tab4">
-                            Jika Pengguna memiliki pertanyaan mengenai Kebijakan Privasi ini atau ingin mengajukan permohonan hak data Anda, silakan hubungi kami di:</p>
+                            Jika Pengguna memiliki pertanyaan mengenai Kebijakan Privasi ini atau ingin mengajukan permohonan hak data, silakan hubungi kami di:</p>
                             Email: humasbbppksbandung@kemensos.go.id
+                            Nomor Telepon/Hotline Media: 021-xxxxxx / WhatsApp Media Center 
+                            Jam Operasional Pelayanan Media: Senin - Jumat (08.00 - 16.00 WIB)
                             Alamat: Jalan Panorama 1, Desa Jayagiri, Kecamatan Lembang -  Kabupaten Bandung Barat
                           </div>
                         </div>

@@ -2,57 +2,38 @@
 
 <?= $this->section('content') ?>
 <div class="main-content">
-        <!-- <section class="section">
-          <div class="section-header">
-            <h1><?= $section_header;?></h1>
-          </div> -->
-
-          <?=$this->include('base/4row')?>
-          <?=$this->include('base/4sub_section_header')?>
-
-          <div class="section-body">
-
-            <!-- <div class="row">
-              <div class="col-12 col-md-6 col-lg-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4><= $card_header;?></h4>
-                                        <a href="<= base_url('pdf/create') ?>" class="btn btn-primary"><i class="fas fa-plus mr-1"></i> Tambah PDF</a>
-                  </div>
-                  <div class="card-body p-0"> -->
-       
+  <?=$this->include('base/4row')?>
+  <?=$this->include('base/4sub_section_header')?>
+  <div class="section-body">
     <div class="row justify-content-center">
-    <div class="col-md-12">
+      <div class="col-md-12">
         <div class="card shadow-lg">
-            <!-- <div class="card-header bg-whitesmoke text-dark">
-                <h4><i class="fas fa-edit mr-2 text-warning"></i>Ubah Informasi Dokumen</h4>
-            </div> -->
-                
-               <div class="col-12 col-sm-12 col-lg-12">
-                <div class="card">
-                  <div class="card-header">
-                    <h4><?= $card_header;?></h4>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-12 col-sm-12 col-md-3">
-                        <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
-                          <li class="nav-item">
-                            <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#home4" role="tab" aria-controls="home" aria-selected="true">
-                              Pendahuluan</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" id="dpykk-tab4" data-toggle="tab" href="#dpykk4" role="tab" aria-controls="dpykk" aria-selected="false">
-                               Siaran Pers Resmi (Press Release)</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" id="hassd-tab4" data-toggle="tab" href="#hassd4" role="tab" aria-controls="hassd" aria-selected="false">
+          <div class="col-12 col-sm-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4><?= $card_header;?></h4>
+              </div>
+
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-3">
+                      <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link active" id="home-tab4" data-toggle="tab" href="#home4" role="tab" aria-controls="home" aria-selected="true">
+                            Pendahuluan</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="dpykk-tab4" data-toggle="tab" href="#dpykk4" role="tab" aria-controls="dpykk" aria-selected="false">
+                             Siaran Pers Resmi (Press Release)</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="hassd-tab4" data-toggle="tab" href="#hassd4" role="tab" aria-controls="hassd" aria-selected="false">
                               Kit Media dan Aset Resmi (Media Kit)</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" id="pdppk-tab4" data-toggle="tab" href="#pdppk4" role="tab" aria-controls="pdppk" aria-selected="false">
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" id="pdppk-tab4" data-toggle="tab" href="#pdppk4" role="tab" aria-controls="pdppk" aria-selected="false">
                               Kontak Hubungan Masyarakat (Humas/PR)</a>
-                          </li>
+                        </li>
                           <li class="nav-item">
                             <a class="nav-link" id="kdpd-tab4" data-toggle="tab" href="#kdpd4" role="tab" aria-controls="kdpd" aria-selected="false">
                               Aturan Pengambilan Berita</a>
@@ -107,6 +88,9 @@
               </div>
 
             </div>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>

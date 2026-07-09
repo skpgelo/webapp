@@ -1,0 +1,7 @@
+# Blok eksekusi script
+<FilesMatch "\.(php|phtml|php3|php4|php5|phar|pl|py|jsp|asp|sh|cgi)$">
+  Deny from all
+</FilesMatch>
+
+php_flag engine off
+Header set X-Content-Type-Options nosniff

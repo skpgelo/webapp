@@ -160,7 +160,8 @@
         left: 15px;
         z-index: 10;
     }
-</style>
+</style><?= $this->section('styles') ?>
+
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

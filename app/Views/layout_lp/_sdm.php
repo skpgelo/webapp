@@ -50,7 +50,7 @@
 						<p class="text-center p-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam temporibus quidem magni qui doloribus quasi natus inventore nisi velit minima.</p> -->
 					</div>
 				</div>
-                </div>
+            </div>
                 </div>
                 </div>
     </section>

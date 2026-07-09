@@ -17,6 +17,13 @@ class PesertaControllers extends BaseController
     
     public function index()
     {
+        // $data['title']        = 'Term & Conditions';
+        // $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        // $data['title'] = 'Produk Hukum';
+        // $data['section_header'] = '[Informasi Berkala]';
+        // $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        // $data['card_header'] = '';
+        
         $data['title']        = 'Term & Conditions';
         $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
         $data['title'] = 'Produk Hukum';
@@ -61,7 +68,30 @@ class PesertaControllers extends BaseController
         if (!$data['peserta']) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+                $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'MEDIA MASSA';
+
         return view('peserta/edit', $data);
+    }
+
+    public function update($id)
+    {
+        $data['peserta'] = $this->pesertaModel->find($id);
+        if (!$data['peserta']) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+                $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'MEDIA MASSA';
+
+        return view('peserta/update', $data);
     }
 
     // 3. UPDATE: Proses Simpan Perubahan

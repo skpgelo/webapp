@@ -203,10 +203,29 @@ class SdmPostModels extends Model
                     ->groupBy('jabatan')
                     ->findAll();
     }
+
        public function getChartData()
     {
         return $this->select('gol, COUNT(id) as total')
                     ->groupBy('gol')
+                    ->findAll();
+    }
+
+    public function getSdmLimit($limit)
+    {
+        return $this->table($this->table)
+            ->select('*')
+            ->join('categories', 'posts.category_id = categories.category_id')
+            ->limit($limit)
+            ->orderby('posts.title', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+
+       public function getSdmCountData()
+    {
+        return $this->select('id, COUNT(id) as total_id')
+                    // ->groupBy('gol')
                     ->findAll();
     }
 

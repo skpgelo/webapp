@@ -11,7 +11,9 @@ class Login extends BaseController
 
     public function __construct()
     {
-        $this->googleClient = new Google_Client();//
+        // $this->googleClient = new \Google_Client();//
+        // Alternatif jika cara pertama masih error:
+        $this->googleClient = new \Google\Client();
 
         $this->googleClient->setClientId('937743688231-f2sr7s9tmo9quejspu6vrlsoft65tsct.apps.googleusercontent.com');
         $this->googleClient->setClientSecret('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');

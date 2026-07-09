@@ -13,12 +13,13 @@
             <li><a class="nav-link" href="<?= base_url() ?>/"><i class="far fa-circle"></i> <span>Utama</span></a></li>
             <li><a class="nav-link" href="<?= base_url() ?>/lp"><i class="far fa-circle"></i> <span>Utama2</span></a></li>
             <li><a class="nav-link" href="#"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
+            <li><a class="nav-link" href="<?= base_url() ?>tabterm"><i class="far fa-square"></i> <span>Term</span></a></li>
             <!-- <li class="dropdown">
               <a href="<?= base_url() ?>/" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Utama</span></a>
               <a href="<?= base_url() ?>/" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
-                <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
+                <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>tabterm
               </ul>
             </li> -->
             <li class="menu-header">Starter</li>
@@ -30,7 +31,11 @@
                 <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
               </ul>
             </li>
-            <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+            <li class="active"><a class="nav-link" href="<?= base_url() ?>employee"><i class="fas fa-users"></i> <span>Sumberdaya Manusia</span></a></li>
+            <li>
+              <a class="nav-link" href="<?= base_url() ?>berita/berita_terkini"><i class="far fa-square"></i> <span>Berita</span></a></li>
+            <li>
+              <a class="nav-link" href="<?= base_url() ?>reg"><i class="far fa-square"></i> <span>Regulasi</span></a></li>
             <li class="dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="far fa-square"></i> <span>Bootstrap</span></a>
               <ul class="dropdown-menu">
@@ -150,7 +155,10 @@
                 <li><a class="nav-link" href="utilities-invoice.html">Invoice</a></li>
                 <li><a href="utilities-subscribe.html">Subscribe</a></li>
               </ul>
-            </li>            <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
+            </li>            
+
+
+            <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
@@ -159,4 +167,57 @@
             </a>
           </div>        
         </aside>
+            <!-- KOMPONEN BARU: STISLA INFO-BOX WIDGETS -->
+            <div class="row">
+                <!-- Widget 1: Total Karyawan -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-primary">
+                    <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Karyawan</h4>
+                    </div>
+                    <div class="card-body" id="widgetTotalEmployees">
+                        0
+                    </div>
+                    </div>
+                </div>
+                </div>
+                
+                <!-- Widget 2: Total Unit -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-danger">
+                    <i class="fas fa-building"></i>
+                    </div>
+                    <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Total Unit / Divisi</h4>
+                    </div>
+                    <div class="card-body" id="widgetTotalUnits">
+                        0
+                    </div>
+                    </div>
+                </div>
+                </div>
+                
+                <!-- Widget 3: Ulang Tahun Bulan Ini -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-warning">
+                    <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <div class="card-wrap">
+                    <div class="card-header">
+                        <h4>Lahir Bulan Ini</h4>
+                    </div>
+                    <div class="card-body" id="widgetBirthday">
+                        0
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
       </div>
