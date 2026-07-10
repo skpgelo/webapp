@@ -34,5 +34,13 @@ class OrganisasiControllers extends BaseController
         return view('organisasi/googleOrgChart', $data);
     }
 
-    
+         public function exp_OrgChart()
+    {
+        $model = new SdmModels();
+        $data['pegawai'] = $model->getGoogleOrgData();
+        // $data['sdm'] = $model->getOrgData();
+        
+        return view('organisasi/exp_OrgChart', $data);
+    }
+   
 }

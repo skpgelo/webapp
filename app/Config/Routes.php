@@ -166,3 +166,5 @@ $routes->post('upload/proses-foto', 'UploadController::prosesFoto');
 $routes->post('upload/proses-pdf', 'UploadController::prosesPdf');
 $routes->get('upload/hapus-foto/(:num)', 'UploadController::hapusFoto/$1');
 $routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
+
+$routes->get('exp_OrgChart', 'OrganisasiControllers::exp_OrgChart');
