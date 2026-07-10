@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title><?= $title ?? 'Dashboard'; ?> &mdash; || BBPPKS BANDUNG</title>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="https://cloudflare.com"> <!-- Ganti/gunakan file lokal stisla.css jika ada -->
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <link rel="stylesheet" href="https://fontawesome.com">
+<head>
 	<?=$this->include('base/1head')?>
 	<?=$this->include('base/2weathericons')?>
 	<?=$this->include('base/2css')?>

@@ -95,8 +95,13 @@ class Filters extends BaseFilters
      *
      * @var array<string, list<string>>
      */
-    public array $methods = [];
-
+    // public array $methods = [];
+public array $methods = [
+    'post' => ['csrf'], // 1. CSRF cuma jalan di POST
+];
+public array $except = [
+    'utama/list' // 2. Kecualikan route ini dari CSRF
+];
     /**
      * List of filter aliases that should run on any
      * before or after URI patterns.

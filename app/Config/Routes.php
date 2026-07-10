@@ -32,6 +32,16 @@ $routes->get('/signin', 'Signin::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 
 
+<<<<<<< HEAD
+$routes->get('regulasi', 'RegulasiControllers::index');
+$routes->get('reg/create', 'RegulasiControllers::create');
+$routes->post('reg/store', 'RegulasiControllers::store');
+
+// $routes->get('tabprivacy', 'RegulasiControllers::tabprivacy');//bisa dipakai
+$routes->get('tabterm', 'RegulasiControllers::tabterm');//bisa dipakai
+// $routes->get('tabpress', 'RegulasiControllers::tabpress');//bisa dipakai
+$routes->get('reg', 'RegulasiControllers::index');//bisa dipakai
+=======
 $routes->get('peserta', 'PesertaControllers::index');
 $routes->get('peserta/tambah', 'PesertaControllers::create');
 $routes->get('peserta/store', 'PesertaControllers::store');
@@ -42,6 +52,7 @@ $routes->get('peserta/download/(:num)', 'PesertaControllers::download/$1');
 
 $routes->get('tabterm', 'RegulasiControllers::tabterm');
 $routes->get('reg', 'RegulasiControllers::index');
+>>>>>>> 0b7ef6053a914f9fce9309d3cfbc81df0edd42be
 $routes->get('reg/edit/(:num)', 'RegulasiControllers::edit/$1');
 $routes->post('reg/update/(:num)', 'RegulasiControllers::update/$1');
 $routes->get('reg/delete/(:num)', 'RegulasiControllers::delete/$1');
@@ -49,6 +60,11 @@ $routes->get('reg/download/(:num)', 'RegulasiControllers::download/$1');
 // $routes->get('reg', 'RegulasiControllers::index');
 $routes->get('reg/create', 'RegulasiControllers::create');
 $routes->post('reg/store', 'RegulasiControllers::store');
+
+
+$routes->get('/produk_hukum', 'ProdukHukum::produk_hukum');
+$routes->get('/produk_hukum_uu', 'ProdukHukum::produk_hukum_uu');
+$routes->get('/tambah_produk_hukum', 'ProdukHukum::tambah_produk_hukum');
 
 
 // $routes->match(['get', 'post'], 'store', 'Signup::store');
@@ -101,10 +117,6 @@ $routes->get('detailberita/(:segment)', 'Berita::detailberita/$1');
 $routes->get('/detail', 'Berita::detail_detail_berita');    
 $routes->get('/greek', 'Greek::index');    
 
-$routes->get('/produk_hukum', 'ProdukHukum::produk_hukum');
-$routes->get('/produk_hukum_uu', 'ProdukHukum::produk_hukum_uu');
-$routes->get('/tambah_produk_hukum', 'ProdukHukum::tambah_produk_hukum');
-
 $routes->get('/setiap_saat', 'Setiap_saat::setiap_saat');
 $routes->get('/serta_merta', 'Serta_merta::serta_merta');
 $routes->get('/iss', "Serta_merta::iss");//
@@ -143,15 +155,16 @@ $routes->get('/create/sdm', 'SdmPostController::create');
 $routes->get('/edit/sdm', 'SdmPostController::edit');
 $routes->post('/update/sdm', 'SdmPostController::update');
 
-$routes->get('/sdm', 'SdmControllers::index');
+$routes->get('sdm', 'SdmControllers::index');
 $routes->get('admin/berita/tambah', 'SdmControllers::tambah');
 $routes->get('admin/berita/edit/$1', 'SdmControllers::edit/$1');
 $routes->get('admin/berita/delete/$1', 'SdmControllers::delete/$1');
+$routes->get('pegawai', 'Karyawan::index');
+// $routes->get('karyawan', 'Karyawan::index');
 
 $routes->get('auth_login', 'DistControllers::auth_login');
 $routes->get('auth_forgot_password', 'DistControllers::auth_forgot_password');
 
-$routes->get('pegawai', 'Karyawan::index');
 
 $routes->get('peserta', 'PesertaControllers::index'); //bisa dipakai
 $routes->get('peserta/create', 'PesertaControllers::create');
@@ -160,11 +173,58 @@ $routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
 $routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
 $routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
 $routes->get('peserta/statistik_peserta', 'PesertaControllers::statistik_peserta');
+<<<<<<< HEAD
+$routes->get('peserta/download/(:num)', 'PesertaControllers::download/$1');
+
+$routes->get('peserta/tambah', 'PesertaControllers::create');
+
+$routes->get('pdf', 'PdfController::index');
+$routes->get('pdf/create', 'PdfController::create');
+$routes->post('pdf/store', 'PdfController::store');
+$routes->get('pdf/edit/(:num)', 'PdfController::edit/$1');
+$routes->post('pdf/update/(:num)', 'PdfController::update/$1');
+$routes->get('pdf/delete/(:num)', 'PdfController::delete/$1');
+$routes->get('pdf/download/(:num)', 'PdfController::download/$1');
+
+// $routes->get('berita/viewBerita', 'BeritaControllers::viewBerita');
+$routes->get('berita/all', 'BeritaControllers::viewBerita');
+$routes->get('berita/tambah_b', 'BeritaControllers::index');
+$routes->get('berita/tambah', 'BeritaControllers::tambah');
+$routes->post('berita/simpan', 'BeritaControllers::simpan');
+$routes->get('berita/detail/(:num)', 'BeritaControllers::detail/$1');
+$routes->get('berita/berita_terkini', 'BeritaControllers::weeksday');
+$routes->get('berita/berita_highlight', 'BeritaControllers::highlight');
+
+$routes->get('employee', 'EmployeeControllers::index');
+$routes->get('employee/getAllData', 'EmployeeControllers::getAllData');
+$routes->post('employee/update/(:num)', 'EmployeeControllers::update/$1'); // Rute khusus ubah file
+$routes->resource('employee', ['controller' => 'EmployeeControllers', 'except' => ['index', 'update']]);
+$routes->get('employee/getSummaryWidgets', 'EmployeeControllers::getSummaryWidgets');
+
+
+// $routes->get('utama/list', 'UtamaController::list'); 
+// $routes->get('list', 'UtamaController::list'); 
+// $routes->get('utama/list', 'Utama::list'); 
+$routes->get('utama/get/(:num)', 'Utama::get/$1'); 
+$routes->post('utama/delete/(:num)', 'Utama::delete/$1'); 
+$routes->post('utama/delete-multi/(:num)', 'Utama::deleteMulti/$1');
+$routes->get('utama/download/(:any)/(:num)', 'Utama::download/$1/$2');
+$routes->get('utama/export-excel', 'Utama::exportExcel');
+$routes->get('utama/export-pdf', 'Utama::exportPdf');
+$routes->match(['get', 'post'], 'utama/list', 'UtamaController::list');
+
+$routes->get('galeri/v_galeri', 'GaleriControllers::index');
+$routes->get('galeri/v_galeri', 'GaleriControllers::index');
+=======
 
 $routes->get('upload', 'UploadController::index');
 $routes->post('upload/proses-foto', 'UploadController::prosesFoto');
 $routes->post('upload/proses-pdf', 'UploadController::prosesPdf');
 $routes->get('upload/hapus-foto/(:num)', 'UploadController::hapusFoto/$1');
 $routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
+<<<<<<< HEAD
 
 $routes->get('exp_OrgChart', 'OrganisasiControllers::exp_OrgChart');
+=======
+>>>>>>> 0b7ef6053a914f9fce9309d3cfbc81df0edd42be
+>>>>>>> 946f6de7c532dba5d831d6584c1cd333c42bb657

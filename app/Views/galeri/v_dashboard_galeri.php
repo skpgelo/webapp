@@ -19,12 +19,12 @@
 </div>
 
 <!-- Menggabungkan Semua Potongan Slicing Modul -->
-<?= $this->include('galeri/modules/mod_carousel') ?>
-<?= $this->include('galeri/modules/mod_tabel') ?>
-<?= $this->include('galeri/modules/mod_form') ?>
+<= $this->include('galeri/module/mod_carousel') ?>
+<= $this->include('galeri/module/mod_tabel') ?>
+<= $this->include('galeri/module/mod_form') ?>
 <!-- Masukkan include ini bersama deretan modul lainnya di dalam section content -->
-<?= $this->include('galeri/modules/mod_form') ?>
-<?= $this->include('galeri/modules/mod_form_tematik') ?> <!-- File Baru Ditambahkan -->
+<= $this->include('galeri/module/mod_form') ?>
+<= $this->include('galeri/module/mod_form_tematik') ?> File Baru Ditambahkan
 
 <?= $this->endSection() ?>
 

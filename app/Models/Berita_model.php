@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class Berita_model extends Model
 {
 	protected $table 		= 'berita';
-	protected $primaryKey 	= 'id_berita';
+	protected $primaryKey 	= 'id';
 	 protected $allowedFields = ['id_user',
 	 							'id_kategori',
 	 							'slug_berita',
@@ -23,7 +23,7 @@ class Berita_model extends Model
 		$this->select('berita.*, kategori.nama_kategori');
 		$this->join('kategori','kategori.id_kategori = berita.id_kategori');
 		// $this->where('status_berita','Publish');
-		$this->orderBy('id_berita','DESC');
+		$this->orderBy('id','DESC');
 		$query = $this->get();
 		return $query->getResultArray();
 	}
@@ -34,18 +34,18 @@ class Berita_model extends Model
 		$this->select('berita.*, kategori.nama_kategori');
 		$this->join('kategori','kategori.id_kategori = berita.id_kategori');
 		$this->where('status_berita','Publish');
-		$this->orderBy('id_berita','DESC');
+		$this->orderBy('id','DESC');
 		$query = $this->get();
 		return $query->getResultArray();
 	}
 
 	// Detail
-	public function detail($id_berita)
+	public function detail($id)
 	{
 		$this->select('berita.*, kategori.nama_kategori');
 		$this->join('kategori','kategori.id_kategori = berita.id_kategori');
 		$this->where(array(	'status_berita'	=> 'Publish',
-							'id_berita'		=> $id_berita));
+							'id'		=> $id));
 		$query = $this->get();
 		return $query->getRowArray();
 	}
@@ -70,14 +70,14 @@ class Berita_model extends Model
 	// Edit
 	public function edit($data)
 	{
-		$this->where('id_berita',$data['id_berita']);
+		$this->where('id',$data['id']);
 		$this->replace($data);
 	}
 
 	// Delete
-	public function hapus($id_berita)
+	public function hapus($id)
 	{
-		$this->where('id_berita',$id_berita);
+		$this->where('id',$id);
 		$this->delete();
 	}
 }

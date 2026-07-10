@@ -255,15 +255,62 @@ class RegulasiControllers extends BaseController
 
         public function tabterm()
     {
-        $data['title']        = 'Daftar PDF';
-        $data['page_heading'] = 'Modul Manajemen File PDF';
-             $data['title'] = 'Produk Hukum';
+        $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = '';
+
+        $data['card_header_tc'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['card_header_pv'] = 'KEBIJAKAN PRIVASI';
+        $data['card_header_pr'] = 'MEDIA MASSA';
+
+        return view('regulasi/modules/mod_tabterm', $data);
+    }
+
+        public function tabpress()
+    {
+        $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'MEDIA MASSA';
+
+        return view('regulasi/modules/mod_tabpress', $data);
+    }
+
+        public function tabprivacy()
+    {
+        $data['title']        = 'Privacy Policy';
+        $data['page_heading'] = 'KEBIJAKAN PRIVASI';
+        $data['title'] = 'Produk Hukum';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'KEBIJAKAN PRIVASI (PRIVACY POLICY)';
+
+        return view('regulasi/modules/mod_tabprivacy', $data);
+    }
+
+    public function produk_hukum_uu(): string
+{
+
+    $produkhukumModel = new ProdukhukumModel();
+
+     $data['title'] = 'Produk Hukum';
      $data['section_header'] = '[Informasi Berkala]';
      $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
-     $data['card_header'] = 'Term & Conditions';
+     $data['card_header'] = 'Daftar Produk Hukum';
+     $data['produk_huk'] = $produkhukumModel->viewProdukHuk();
+    return view('produkhukum/produk_hukum_uu',$data);
+}
+        public function tab()
+    {
+        $data['title']        = 'Upload PDF';
+        $data['page_heading'] = 'Tambah Berkas Baru';
 
         return view('regulasi/modules/mod_sidebar', $data);
     }
-
 
 }

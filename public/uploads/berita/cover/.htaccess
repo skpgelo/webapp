@@ -1,0 +1,7 @@
+# Matikan eksekusi script PHP di folder ini
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8 .phps
+ForceType application/octet-stream
+<FilesMatch "(?i)\.(php|phtml|php3|php4|php5|php7|php8|phps|pl|py|jsp|asp|sh|cgi)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
