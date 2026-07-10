@@ -16,8 +16,24 @@ class GaleriControllers extends BaseController
         $this->db = \Config\Database::connect();
     }
 
+public function index()
+    {
+     $fotoModel = new FotoImagesModel();
+        
+     $data['title'] = 'Produk Hukum';
+     $data['section_header'] = '[Informasi Berkala]';
+     $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+     $data['card_header'] = 'Daftar Produk Hukum';
+
+     $data = [
+            'list_foto' => $fotoModel->getFotoTayang()
+        ];
+
+        return view('galeri/index', $data);
+    }
+
     // Tampilan Utama Dashboard Galeri
-    public function index()
+    public function indexx()
     {
         return view('galeri/v_dashboard_galeri');
     }

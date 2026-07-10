@@ -6,6 +6,14 @@ use CodeIgniter\Model;
 class BeritaModel extends Model 
 {
 
+   protected $table = 'berita';
+    protected $primaryKey = 'id';
+    protected $allowedFields = [
+        'id_kategori', 'id_tematik', 'judul_berita', 'slug', 
+        'isi_berita', 'kontributor', 'nama_foto', 'foto', 'created_at'
+    ];
+    protected $useTimestamps = false; // karena kita isi manual
+
     function viewOwl() 
     {
         // protected $table = 'berita';
