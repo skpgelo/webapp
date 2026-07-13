@@ -32,6 +32,7 @@ $routes->get('/signin', 'Signin::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 
 
+
 $routes->get('regulasi', 'RegulasiControllers::index');
 $routes->get('reg/create', 'RegulasiControllers::create');
 $routes->post('reg/store', 'RegulasiControllers::store');
@@ -40,6 +41,7 @@ $routes->post('reg/store', 'RegulasiControllers::store');
 $routes->get('tabterm', 'RegulasiControllers::tabterm');//bisa dipakai
 // $routes->get('tabpress', 'RegulasiControllers::tabpress');//bisa dipakai
 $routes->get('reg', 'RegulasiControllers::index');//bisa dipakai
+
 $routes->get('peserta', 'PesertaControllers::index');
 $routes->get('peserta/tambah', 'PesertaControllers::create');
 $routes->get('peserta/store', 'PesertaControllers::store');
@@ -202,7 +204,7 @@ $routes->get('employee/getSummaryWidgets', 'EmployeeControllers::getSummaryWidge
 
 // $routes->get('utama/list', 'UtamaController::list'); 
 // $routes->get('list', 'UtamaController::list'); 
-// $routes->get('utama/list', 'Utama::list'); 
+$routes->get('utama/list', 'Utama::list'); 
 $routes->get('utama/get/(:num)', 'Utama::get/$1'); 
 $routes->post('utama/delete/(:num)', 'Utama::delete/$1'); 
 $routes->post('utama/delete-multi/(:num)', 'Utama::deleteMulti/$1');
@@ -229,3 +231,4 @@ $routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
 $routes->get('exp_OrgChart', 'OrganisasiControllers::exp_OrgChart');
 
 ?>
+<!-- $routes->get('galeri/v_tabel', 'GaleriControllers::index'); -->
