@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-light fixed-top" id="mainNav">
-            <div class="container px-4 px-lg-12">
+            <div class="px-4 px-lg-12">
                 <!-- <a class="navbar-brand" style="font-size:medium;" href="#page-top"> -->
                 <!-- <span style="color:red;"><i>ppid</span>bbppks bandung</i> -->
                 <!-- </a> -->
@@ -10,11 +10,11 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto" style="font-size:0.9rem ">
                         <!-- <li class="nav-item"><a class="nav-link" href="#about">Kami</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="#profile"><span  style="color:primary;">Tentang</span> Kami</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#berkala"><span style="color:primary;">Informasi </span>Berkala</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sertamerta"><span style="color:primary;">Informasi </span>Serta Merta</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#setiapsaat"><span style="color:primary;">Informasi </span>Setiap Saat</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#mohon">Permohonan<span style="color:primary;">Informasi</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#profile"><span style="color:primary;">Tentang Kami</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#berkala"><span style="color:primary;">Informasi Berkala</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sertamerta"><span style="color:primary;">Informasi Serta Merta</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#setiapsaat"><span style="color:primary;">Informasi Setiap Saat</span></a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="#mohon"><span style="color:primary;">Permohonan Informasi</span></a></li> -->
                         <!-- <li class="nav-item" class="dropdown"><a class="nav-link" class="dropbtn" href="<?= base_url(); ?>ragam">Ragam</a> -->
                         <!-- <a href="#">Home sub 1</a>
                         <a href="#">Home sub 2</a>
@@ -22,14 +22,19 @@
                         <!-- <lu ><a class="nav-link" href="#lain">Lainnya</a></lu>
                             <lu ><a class="nav-link" href="#lain">Lainnya</a></lu> -->
                         </li>
-                            <?php if (session()->get('logged_in') ) : ?>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>logout">Logout</a></li>
-                        <li><a>I'm <?= session()->get('name'); ?></a></li>
-                        <!-- <li><a><img class="img-profile rounded-circle" src="<= base_url(); ?>/img/<= user()->users_image ?>" sizes="32x32"></a> -->
-                        </li>
-                            <?php else : ?>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>v_login">Log<span style="color:blue;"> in</span></a></li>
+                            <?php if (auth()->loggedIn()): ?>
+                                <!-- <p>Halo, <= esc(auth()->user()->username) ?> 👋</p> -->
+                                <!-- <a href="/logout" class="btn btn-danger">Logout</a> -->
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/logout"><span style="color:primary;">Logout</span></a></li>
+                                <!-- <li><a>I'm <= esc(auth()->user()->username) ?></a></li> -->
+
+                            <?php else: ?>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/login"><span style="color:primary;">SignIn</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/register"><span style="color:primary;">Register</span></a></li>
+                                <!-- <a href="/login" class="btn">Login</a>  -->
+                                <!-- <a href="/register" class="btn">Register</a> -->
                             <?php endif; ?>
+
                         </ul>
                         <!-- <ul class="topnav">
                         <li><a class="active" href="#home">Home</a></li>

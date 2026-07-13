@@ -16,16 +16,18 @@
                                 <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="#faq">F.A.Q.</a> </li>
                                 <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
-                                <!-- <li class="nav-item"> <a href="#" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Sign In/Sign Out</a></li> -->
-                            <?php if (session()->get('logged_in') ) : ?>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>logout">Logout</a></li>
-                        <li><a>I'm <?= session()->get('name'); ?></a></li>
-                        <!-- <li><a><img class="img-profile rounded-circle" src="<= base_url(); ?>/img/<= user()->users_image ?>" sizes="32x32"></a> -->
-                        </li>
-                            <?php else : ?>
-                        <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>v_login"><span style="color:blue;">SIGNIN</span></a></li>
+                            <?php if (auth()->loggedIn()): ?>
+                                <!-- <p>Halo, <= esc(auth()->user()->username) ?> 👋</p> -->
+                                <!-- <a href="/logout" class="btn btn-danger">Logout</a> -->
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/logout">LOGOUT</a></li>
+                                <li><a>I'm <?= esc(auth()->user()->username) ?></a></li>
+
+                            <?php else: ?>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/login"><span style="color:blue;">SIGNIN</span></a></li>                                <p>Kamu belum login</p>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/register"><span style="color:blue;">REGISTER</span></a></li>                                <p>Kamu belum login</p>
+                                <!-- <a href="/login" class="btn">Login</a>  -->
+                                <!-- <a href="/register" class="btn">Register</a> -->
                             <?php endif; ?>
-                        </ul>
                             </ul>
                         </div>
                     </nav>
