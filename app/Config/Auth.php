@@ -26,6 +26,7 @@ use CodeIgniter\Shield\Authentication\Passwords\NothingPersonalValidator;
 use CodeIgniter\Shield\Authentication\Passwords\PwnedValidator;
 use CodeIgniter\Shield\Authentication\Passwords\ValidatorInterface;
 use CodeIgniter\Shield\Models\UserModel;
+use CodeIgniter\Shield\Config\Auth as ShieldConfig;
 
 class Auth extends ShieldAuth
 {
@@ -74,12 +75,12 @@ class Auth extends ShieldAuth
      * to apply any logic you may need.
      */
     public array $redirects = [
-        'register'          => '/',
-        'login'             => '/',
-        'logout'            => 'login',
-        'force_reset'       => '/',
-        'permission_denied' => '/',
-        'group_denied'      => '/',
+        'register'          => 'login',
+        'login'             => '',
+        'logout'            => '',
+        'force_reset'       => '',
+        'permission_denied' => '',
+        'group_denied'      => '',
     ];
 
     /**

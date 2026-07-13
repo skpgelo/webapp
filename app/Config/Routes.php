@@ -3,6 +3,12 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
+$routes->get('/login', 'Login::index');
+$routes->get('/login/process', 'Login::process');
+$routes->get('/v_login', 'Admin::login');
+$routes->get('/register', 'Admin::register');
+$routes->get('/password', 'Admin::password');
+
 $routes->get('/', 'Home::index');
 service('auth')->routes($routes);  // <-- TAMBAHIN INI
 return $routes;
@@ -13,12 +19,6 @@ $routes->get('/dash1', 'Dashboard::dash1');
 
 
 // $routes->get('/org', 'Home::indexx');
-
-$routes->get('/login', 'Login::index');
-$routes->get('/login/process', 'Login::process');
-$routes->get('/v_login', 'Admin::login');
-$routes->get('/register', 'Admin::register');
-$routes->get('/password', 'Admin::password');
 
 
 // $routes->get('/', 'SignupController::index');

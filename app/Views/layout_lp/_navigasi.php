@@ -25,12 +25,12 @@
                             <?php if (auth()->loggedIn()): ?>
                                 <!-- <p>Halo, <= esc(auth()->user()->username) ?> 👋</p> -->
                                 <!-- <a href="/logout" class="btn btn-danger">Logout</a> -->
-                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/logout"><span style="color:primary;">Logout</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>logout"><span style="color:primary;">Logout</span></a></li>
                                 <!-- <li><a>I'm <= esc(auth()->user()->username) ?></a></li> -->
 
                             <?php else: ?>
-                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/login"><span style="color:primary;">SignIn</span></a></li>
-                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>/register"><span style="color:primary;">Register</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>login"><span style="color:primary;">SignIn</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="<?= base_url(); ?>register"><span style="color:primary;">Register</span></a></li>
                                 <!-- <a href="/login" class="btn">Login</a>  -->
                                 <!-- <a href="/register" class="btn">Register</a> -->
                             <?php endif; ?>
