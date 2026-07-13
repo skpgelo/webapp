@@ -4,15 +4,12 @@ use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
+service('auth')->routes($routes);  // <-- TAMBAHIN INI
+return $routes;
+
 $routes->get('/lp', 'Home::indexx');
 $routes->get('/dash', 'Dashboard::dash');
 $routes->get('/dash1', 'Dashboard::dash1');
-
-$routes->get('/signup', 'Signup::index');
-$routes->match(['get', 'post'], 'store', 'Signup::store');
-$routes->match(['get', 'post'], 'loginAuth', 'Signin::loginAuth');
-$routes->get('/signin', 'Signin::index');
-$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 
 
 // $routes->get('/org', 'Home::indexx');
@@ -73,7 +70,7 @@ $routes->get('/tambah_produk_hukum', 'ProdukHukum::tambah_produk_hukum');
 $routes->get('googleOrgChart', 'StatistikControllers::googleOrgChart');
 $routes->get('balkanOrgChart', 'StatistikControllers::balkanOrgChart');
 
-$routes->get('/', 'Home::index');
+
 $routes->get('/profile_pejabat', 'Home::profile_pejabat');
 $routes->get('/ragam', 'Home::ragam');
 $routes->get('/dashstisla', 'Home::indexstisla');
@@ -136,8 +133,14 @@ $routes->get('/dikecualikan', "Kecuali::dikecualikan");
 $routes->get('/signup', 'Signup::index');
 $routes->match(['get', 'post'], 'store', 'Signup::store');
 $routes->match(['get', 'post'], 'loginAuth', 'Signin::loginAuth');
-$routes->get('/signin', 'Signin::index');
 $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+
+$routes->get('auth/login', 'Auth::index');
+$routes->match(['get', 'post'],'login', 'Auth::login');
+$routes->group('', ['namespace' => 'CodeIgniter\Shield\Controllers'], function($routes) {
+    $routes->get('magic-link', 'MagicLinkController::magicLinkForm');
+    $routes->post('magic-link', 'MagicLinkController::magicLinkVerify');
+});
 
 // $routes->get('/login', 'Login::index');
 $routes->get('/login/process', 'Login::process');
@@ -231,4 +234,4 @@ $routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
 $routes->get('exp_OrgChart', 'OrganisasiControllers::exp_OrgChart');
 
 ?>
-<!-- $routes->get('galeri/v_tabel', 'GaleriControllers::index'); -->
+

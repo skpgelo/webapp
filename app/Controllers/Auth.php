@@ -16,7 +16,8 @@ class Auth extends Controller
         if (session()->has('login')) {
             return redirect()->to(base_url('dashboard'));
         }
-        return view('admin/login');
+        return view('Auth/login');
+        // return view('admin/login');
     }
 
        public function login()

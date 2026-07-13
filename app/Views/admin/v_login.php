@@ -44,8 +44,10 @@
                             </div>
                             </span>
                             <?php endif;?>
-                        <form method="POST" action="<?= base_url(); ?>loginAuth">
-                            <!-- <form method="POST" action="" class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN"> -->
+                        <!-- <form method="POST" action="<= base_url(); ?>loginAuth"> -->
+                            <form method="POST" action="<?= base_url(); ?>/loginAuth" class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="csrf_test_name" value="token-rahasia">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter" >
                                 <div class="col">

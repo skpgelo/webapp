@@ -89,5 +89,5 @@ class CreatePenggunaTable extends Migration
     }
 
 }
-    $this->db->table('pengguna')->insertBatch($dataBulk);
+ 
 
