@@ -31,6 +31,8 @@
                         <a class="nav-link" id="press-tab26" data-toggle="tab" href="#press26" role="tab" aria-controls="press" aria-selected="false">PRESS</a>
                       </li>
                     </ul>
+                    <!-- ======================== -->
+                     
                     <div class="tab-content tab" id="myTab3Content">
                       <div class="tab-pane fade show active" id="hometc24" role="tabpanel" aria-labelledby="hometc-tab24">
                         <div class="col-12 col-sm-12 col-lg-12">

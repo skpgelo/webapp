@@ -114,7 +114,7 @@
                         <span class="badge badge-danger"><?= esc($berita_terbaru['kategori']) ?></span>
                         <span class="text-small text-muted font-weight-600"><?= date('d-m-Y', strtotime($berita_terbaru['created_at'])) ?></span>
                     </div>
-                    <h3 class="font-weight-bold text-dark mb-2"><?= substr(esc($row['judul_berita']), 0, 85) ?>... </h3>
+                    <h3 class="font-weight-bold text-dark mb-2"><?= substr(esc($berita_terbaru['judul_berita']), 0, 85) ?>... </h3>
                     <p class="text-muted"><?= character_limiter(strip_tags($berita_terbaru['isi_berita']), 175) ?></p>
                 </div>
                 <div class="card-footer bg-light border-top d-flex align-items-center justify-content-between py-2 px-4">

@@ -1,33 +1,63 @@
 <?php
 
-use CodeIgniter\Router\RouteCollection;
+// use CodeIgniter\Router\RouteCollection;
+use CodeIgniter\Shield\Config\Routes as ShieldRoutes;
 
 /** @var RouteCollection $routes */
-$routes->get('/login', 'Login::index');
-$routes->get('/login/process', 'Login::process');
-$routes->get('/v_login', 'Admin::login');
-$routes->get('/register', 'Admin::register');
-$routes->get('/password', 'Admin::password');
 
 $routes->get('/', 'Home::index');
-service('auth')->routes($routes);  // <-- TAMBAHIN INI
-return $routes;
+// service('auth')->routes($routes);  // <-- TAMBAHIN INI
+// return $routes;
 
 $routes->get('/lp', 'Home::indexx');
 $routes->get('/dash', 'Dashboard::dash');
 $routes->get('/dash1', 'Dashboard::dash1');
 
 
+// $routes->get('/login', 'Login::index');
+$routes->get('/login/process', 'Login::process');
+$routes->get('/v_login', 'Admin::login');
+$routes->get('/register', 'Admin::register');
+$routes->get('/password', 'Admin::password');
+
 // $routes->get('/org', 'Home::indexx');
 
+service('auth')->routes($routes);
+
+$routes->get('/login', 'Auth::login');
+$routes->post('/login', 'Auth::login');
+$routes->get('/register', 'Auth::register');
+$routes->post('/register', 'Auth::register');
+$routes->get('/forgot', 'Auth::forgot');
+$routes->post('/forgot', 'Auth::forgot');
+$routes->get('/reset-password', 'Auth::reset');
+$routes->post('/reset-password', 'Auth::reset');
+// $routes->get('/dashboard', 'Auth::dashboard');
+$routes->get('/logout', 'Auth::logout');
 
 // $routes->get('/', 'SignupController::index');
-$routes->get('/signup', 'Signup::index');
-$routes->match(['get', 'post'], 'store', 'Signup::store');
-$routes->match(['get', 'post'], 'loginAuth', 'Signin::loginAuth');
-$routes->get('/signin', 'Signin::index');
-$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
+// $routes->get('/signup', 'Signup::index');
+// $routes->match(['get', 'post'], 'store', 'Signup::store');
+// $routes->match(['get', 'post'], 'loginAuth', 'Signin::loginAuth');
+// $routes->get('/signin', 'Signin::index');
+// $routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
 
+// $routes->get('/login', 'Auth::index');
+// $routes->post('/auth/login', 'Auth::login');
+// $routes->get('auth/login', 'Auth::index');
+// $routes->match(['get', 'post'],'login', 'Auth::login');
+// $routes->group('', ['namespace' => 'CodeIgniter\Shield\Controllers'], function($routes) {
+//     $routes->get('magic-link', 'MagicLinkController::magicLinkForm');
+//     $routes->post('magic-link', 'MagicLinkController::magicLinkVerify');
+// });
+
+// $routes->get('/login', 'Login::index');
+$routes->post('/login/process', 'Login::process');
+$routes->get('/logoutus155', 'Serta_merta::plus155');
+$routes->get('/tutor', 'Serta_merta::tutor');
+$routes->get('/users', 'Admin::users');
+$routes->get('/admin', 'Admin::admin');
+$routes->get('/table', 'Admin::table');
 
 
 $routes->get('regulasi', 'RegulasiControllers::index');
@@ -35,9 +65,9 @@ $routes->get('reg/create', 'RegulasiControllers::create');
 $routes->post('reg/store', 'RegulasiControllers::store');
 
 // $routes->get('tabprivacy', 'RegulasiControllers::tabprivacy');//bisa dipakai
-$routes->get('tabterm', 'RegulasiControllers::tabterm');//bisa dipakai
+// $routes->get('tabterm', 'RegulasiControllers::tabterm');//bisa dipakai
 // $routes->get('tabpress', 'RegulasiControllers::tabpress');//bisa dipakai
-$routes->get('reg', 'RegulasiControllers::index');//bisa dipakai
+// $routes->get('reg', 'RegulasiControllers::index');//bisa dipakai
 
 $routes->get('peserta', 'PesertaControllers::index');
 $routes->get('peserta/tambah', 'PesertaControllers::create');
@@ -47,7 +77,7 @@ $routes->get('peserta/store', 'PesertaControllers::store');
 $routes->get('peserta/delete/(:num)', 'PesertaControllers::delete/$1');
 $routes->get('peserta/download/(:num)', 'PesertaControllers::download/$1');
 
-$routes->get('tabterm', 'RegulasiControllers::tabterm');
+$routes->get('tabterm', 'RegulasiControllers::tabterm'); //bagus bisa dipake
 $routes->get('reg', 'RegulasiControllers::index');
 
 $routes->get('reg/edit/(:num)', 'RegulasiControllers::edit/$1');
@@ -75,14 +105,6 @@ $routes->get('/profile_pejabat', 'Home::profile_pejabat');
 $routes->get('/ragam', 'Home::ragam');
 $routes->get('/dashstisla', 'Home::indexstisla');
 
-$routes->get('/login', 'Login::index');
-$routes->get('/login/process', 'Login::process');
-$routes->get('/v_login', 'Admin::login');
-$routes->get('/register', 'Admin::register');
-$routes->get('/password', 'Admin::password');
-$routes->get('/users', 'Admin::users');
-$routes->get('/admin', 'Admin::admin');
-$routes->get('/table', 'Admin::table');
 $routes->get('/galeri', 'Galeri::galeri');
 $routes->get('/gambar', 'Galeri::gambar');
 $routes->get('/tampil_galeri', 'Galeri::tampil_galeri');
@@ -129,30 +151,10 @@ $routes->get('/isoseismal', "Serta_merta::isoseismal");//
 $routes->get('/grabbing', "Setiap_saat::grabbing");//
 $routes->get('/dikecualikan', "Kecuali::dikecualikan");
 
-// $routes->get('/', 'SignupController::index');
-$routes->get('/signup', 'Signup::index');
-$routes->match(['get', 'post'], 'store', 'Signup::store');
-$routes->match(['get', 'post'], 'loginAuth', 'Signin::loginAuth');
-$routes->get('/profile', 'ProfileController::index',['filter' => 'authGuard']);
-
-$routes->get('auth/login', 'Auth::index');
-$routes->match(['get', 'post'],'login', 'Auth::login');
-$routes->group('', ['namespace' => 'CodeIgniter\Shield\Controllers'], function($routes) {
-    $routes->get('magic-link', 'MagicLinkController::magicLinkForm');
-    $routes->post('magic-link', 'MagicLinkController::magicLinkVerify');
-});
-
-// $routes->get('/login', 'Login::index');
-$routes->get('/login/process', 'Login::process');
-$routes->post('/login/process', 'Login::process');
-$routes->get('/logoutus155', 'Serta_merta::plus155');
-$routes->get('/tutor', 'Serta_merta::tutor');
 
 $routes->get('/sdmslider', 'SdmController::sdmSlider');
 
 
-$routes->get('/login', 'Auth::index');
-$routes->post('/auth/login', 'Auth::login');
 $routes->get('/index/sdm', 'SdmPostController::index');
 $routes->get('/create/sdm', 'SdmPostController::create');
 $routes->get('/edit/sdm', 'SdmPostController::edit');
@@ -171,6 +173,7 @@ $routes->get('auth_forgot_password', 'DistControllers::auth_forgot_password');
 
 $routes->get('peserta', 'PesertaControllers::index'); //bisa dipakai
 $routes->get('peserta/create', 'PesertaControllers::create');
+$routes->get('peserta/get-pesertas', 'PesertaController::getPesertas');
 $routes->post('peserta/store', 'PesertaControllers::store');
 $routes->get('peserta/edit/(:num)', 'PesertaControllers::edit/$1');
 $routes->post('peserta/update/(:num)', 'PesertaControllers::updateData/$1');
@@ -232,6 +235,23 @@ $routes->get('upload/hapus-pdf/(:num)', 'UploadController::hapusPdf/$1');
 
 
 $routes->get('exp_OrgChart', 'OrganisasiControllers::exp_OrgChart');
+
+
+$routes->get('survey/index', 'Survey:index');
+$routes->get('survey/create', 'Survey:create');
+$routes->get('survey/revamp', 'Survey:revamp');
+$routes->get('survey/fetch', 'Survey:fetch');
+$routes->get('survey/affix', 'Survey:affix');
+$routes->get('survey/affixq', 'Survey:affixq');
+$routes->get('survey/detach', 'Survey:detach');
+$routes->get('survey/removes', 'Survey:removes');
+$routes->get('survey/removesurvey', 'Survey:removesurvey');
+$routes->get('survey/publish', 'Survey:publish');
+
+$routes->get('part/removes', 'Participant:removes');
+$routes->get('part/serve', 'Participant:serve');
+$routes->get('part/validateToken', 'Participant:validateToken');
+
 
 ?>
 

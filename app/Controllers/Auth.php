@@ -1,57 +1,51 @@
-<?php
-
+<?php 
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
-use App\Models\AuthModels;
+use CodeIgniter\Shield\Controllers\LoginController;
+use CodeIgniter\Shield\Controllers\RegisterController;
+use CodeIgniter\Shield\Controllers\ActionController;
+use CodeIgniter\Shield\Controllers\MagicLinkController;
 
-class Auth extends Controller
+class Auth extends \CodeIgniter\Shield\Controllers\AuthController
 {
-    public function __construct()
+    protected $viewPrefix = 'Auth';
+
+    // Login
+    public function login()
     {
-        $this->Auth = new AuthModels();
+        return $this->loginAction(); 
     }
-    public function index()
+
+    // Register  
+    public function register()
     {
-        if (session()->has('login')) {
-            return redirect()->to(base_url('dashboard'));
+        return $this->registerAction(); 
+    }
+
+    // Lupa Password
+    public function forgot()
+    {
+        return $this->forgotPasswordAction();
+    }
+
+    // Reset Password
+    public function reset()
+    {
+        return $this->resetPasswordAction();
+    }
+
+    // Dashboard setelah login
+    public function dashboard()
+    {
+        if (! auth()->loggedIn()) {
+            return redirect()->to('/login');
         }
-        return view('Auth/login');
-        // return view('admin/login');
+        return view('admin/dashboard', ['user' => auth()->user()]);
     }
 
-       public function login()
-    {
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
-
-        $data = $this->Auth->table('users')->where('username', $username)->first();
-        if ($data) {
-            if (password_verify($password, $data['password'])) {
-                /* return $data['user_id'] . ' ' . $data['name'] . $data['username'] . ' ' . $data['password']; */
-                $dataLog = [
-                    'id' => $data['user_id'],
-                    'nama' => $data['name'],
-                    'email' => $data['email'],
-                    'no_telp' => $data['no_telp'],
-                    'login' => TRUE
-                ];
-
-                session()->set($dataLog);
-
-                return redirect()->to(base_url('dashboard'));
-            }
-            /* return $data['user_id'] . ' ' . $data['name'] . $data['username'] . ' ' . $data['password']; */
-            session()->setFlashdata('error', 'Maaf, password anda salah!');
-            return redirect()->to(base_url('auth'));
-        }
-        session()->setFlashdata('error', 'Maaf, username anda salah!');
-        return redirect()->to(base_url('auth'));
-    }
-
+    // Logout
     public function logout()
     {
-        session()->destroy();
-        return redirect()->to(base_url('auth'));
+        return $this->logoutAction();
     }
 }

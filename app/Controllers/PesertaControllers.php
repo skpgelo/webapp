@@ -26,7 +26,6 @@ class PesertaControllers extends BaseController
         
         $data['title']        = 'Term & Conditions';
         $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
-        $data['title'] = 'Produk Hukum';
         $data['section_header'] = '[Informasi Berkala]';
         $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
         $data['card_header'] = 'MEDIA MASSA';
@@ -34,9 +33,27 @@ class PesertaControllers extends BaseController
         return view('peserta/index', $data);
     }
 
+    public function getPesertas()
+    {
+        $pesertaModel = new PesertaModels();
+        $pesertas = $pesertaModel->findAll();
+        
+        return $this->response->setJSON([
+            'status' => 'success',
+            'data' => $pesertas
+        ]);
+    }
+
     // 2. CREATE: Form Tambah Data
     public function create()
     {
+        $data['title']        = 'Term & Conditions';
+        $data['page_heading'] = 'SYARAT DAN KETENTUAN PENGGUNAAN';
+        $data['section_header'] = '[Informasi Berkala]';
+        $data['sub_section_header'] = 'Informasi yang Wajib Disediakan dan Diumumkan Secara Berkala';
+        $data['card_header'] = 'MEDIA MASSA';
+        $data['peserta'] = $this->pesertaModel->findAll();
+
         return view('peserta/create');
     }
 

@@ -6,10 +6,13 @@ use CodeIgniter\Config\BaseConfig;
 
 class Email extends BaseConfig
 {
-    public string $fromEmail  = 'skpgelo137@gmail.com';
-    public string $fromName   = 'skpgelo';
-    public string $recipients = '';
-
+    public string $fromEmail = 'skpgelo137@gmail.com';
+    public string $fromName  = 'WebApp Official\'s BBPPKS Bandung';
+    public string $SMTPHost  = 'smtp.gmail.com'; // contoh gmail
+    public string $SMTPUser  = 'skpgelo137@gmail.com';
+    public string $SMTPPass  = 'HI&run123';
+    public int    $SMTPPort  = 587;
+    public string $SMTPCrypto = 'tls';
     /**
      * The "user agent"
      */
